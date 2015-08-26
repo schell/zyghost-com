@@ -1,0 +1,7 @@
+.DS_Store
+.cabal-sandbox
+_cache
+cabal.sandbox.config
+dist/
+*.sw[a-z]
+
