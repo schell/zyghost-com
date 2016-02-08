@@ -62,7 +62,9 @@ executable zyghost-com
   -- Other library packages from which modules are imported.
   build-depends:       base >=4.8 && <4.9,
                        hakyll >= 4.7,
-                       filepath >= 1.4 && < 1.5
+                       filepath >= 1.4 && < 1.5,
+                       pandoc >= 1.15 && < 1.16,
+                       tagsoup >= 0.13 && < 0.14
 
   -- Directories containing source files.
   hs-source-dirs:      src

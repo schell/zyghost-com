@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>A Push Pull FRP - Part One - Infrastructure</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://cdn.jsdelivr.net/font-hack/2.010/css/hack.min.css" rel="stylesheet">
+    <style type="text/css">
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: Georgia, 'Times New Roman', serif;
+      }
+      .caption {
+        font-size: smaller;
+        font-style: italic;
+      }
+      .page-header {
+          margin-top: 0px;
+      }
+      /* syntax highlighting */
+      code {
+        font-family: Hack, monospace;
+      }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre {
+        margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none;
+      }
+      td.lineNumbers { border-right: 1px solid #AAAAAA; text-align: right; color: #AAAAAA; padding-right: 5px; padding-left: 5px; }
+      td.sourceCode { padding-left: 5px; }
+      .sourceCode span.kw { color: #007020; font-weight: bold; }
+      .sourceCode span.dt { color: #902000; }
+      .sourceCode span.dv { color: #40a070; }
+      .sourceCode span.bn { color: #40a070; }
+      .sourceCode span.fl { color: #40a070; }
+      .sourceCode span.ch { color: #4070a0; }
+      .sourceCode span.st { color: #4070a0; }
+      .sourceCode span.co { color: #60a0b0; font-style: italic; }
+      .sourceCode span.ot { color: #007020; }
+      .sourceCode span.al { color: red; font-weight: bold; }
+      .sourceCode span.fu { color: #06287e; }
+      .sourceCode span.re { }
+      .sourceCode span.er { color: red; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row page-header">
+        <div class="col-md-3">
+            <h1><a href="../">Zyghost</a></h1>
+            <a href="../articles.html">articles</a>
+          &nbsp;
+          &nbsp;
+          <a href="https://github.com/schell"><i class="fa fa-github"></i></a>
+          <a href="https://twitter.com/schellsan"><i class="fa fa-twitter"></i></a>
+          <a href="https://instagram.com/schellsan/"><i class="fa fa-instagram"></i></a>
+          <a href="https://www.facebook.com/likeaseashell"><i class="fa fa-facebook"></i></a>
+        </div>
+        <div class="col-md-9">
+            <h1>A Push Pull FRP - Part One - Infrastructure</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="content col-md-12">
+          <div class="col-md-3" id="toc"> <h3>Table of Contents</h3> <ul>
+<li><a href="#main">Main</a></li>
+<li><a href="#types">Types</a></li>
+<li><a href="#rendering">Rendering</a></li>
+<li><a href="#a-bit-more-infrastructure">A Bit More Infrastructure</a></li>
+<li><a href="#the-network">The Network</a><ul>
+<li><a href="#cursor-move-events">Cursor Move Events</a></li>
+<li><a href="#cursor-position">Cursor Position</a></li>
+<li><a href="#time-deltas">Time Deltas</a></li>
+<li><a href="#requesting-updates">Requesting Updates</a></li>
+<li><a href="#time">Time</a></li>
+<li><a href="#tweening-with-splines">Tweening With Splines</a></li>
+<li><a href="#actually-using-splines">Actually Using Splines</a></li>
+<li><a href="#the-big-picture">The Big Picture</a></li>
+</ul></li>
+<li><a href="#our-game-loop">Our Game Loop</a><ul>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul></li>
+</ul> </div> <div class="col-md-9"><p>I’d like to learn how to write a push based FRP implementation and so I decided I would take a stab at flipping my pull based FRP into a pushy one. My FRP is called <a href="http://hackage.haskell.org/package/varying">varying</a>. It’s very simple and inspired by <a href="http://hackage.haskell.org/package/netwire">netwire</a>. It uses automatons to generate a stream of varying values - hence the name. For info on the core concepts of varying check out the <a href="http://hackage.haskell.org/package/varying/docs/Control-Varying-Core.html">hackage docs</a>. <a href="http://hackage.haskell.org/package/varying">varying</a> is a rather squishy FRP (and I use the term FRP liberally) but it’s fun and simple. In this article, which is a literate Haskell file, we’ll be building a quick demo ‘game’ to demonstrate how to set up the infrastructure needed for a bigger application. We’ll start with our imports and stuff.</p>
+<h2 id="main">Main</h2>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="co">-- |</span>
+<span class="ot">&gt;</span> <span class="co">--   Module:     Main</span>
+<span class="ot">&gt;</span> <span class="co">--   Copyright:  (c) 2015 Schell Scivally</span>
+<span class="ot">&gt;</span> <span class="co">--   License:    MIT</span>
+<span class="ot">&gt;</span> <span class="fu">--</span>
+<span class="ot">&gt;</span> <span class="co">--   The entrypoint to our nifty app.</span>
+<span class="ot">&gt;</span> <span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span></code></pre></div>
+<p>Our first import is our FRP, <a href="http://hackage.haskell.org/package/varying">varying</a>, which allows us to describe values that change over time and user input.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Varying</span></code></pre></div>
+<p>Next up is the graphics library <a href="http://hackage.haskell.org/package/gelatin-picture">gelatin-picture</a>, which we use to describe two dimensional pictures. Since we’ll be rendering for desktop with glfw we will use <a href="http://hackage.haskell.org/package/gelatin-glfw">gelatin-glfw</a>. It’s currently the only backend for gelatin.<br />
+<a href="http://hackage.haskell.org/package/gelatin-glfw">gelatin-glfw</a> re-exports <a href="http://hackage.haskell.org/package/GLFW-b">GLFW-b</a> and <a href="http://hackage.haskell.org/package/gelatin-picture">gelatin-picture</a> so we don’t have to clutter our workspace with those imports.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Gelatin.GLFW</span></code></pre></div>
+<p>Next we’ll need some infrastructure in the form of <code>TVar</code> and <code>WriterT</code>. We’ll use <code>TVar</code>s to synchronize updates across threads and <code>WriterT</code> to allow our network entities to reach out to the world and each other.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Concurrent</span>
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Concurrent.Async</span>
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Concurrent.STM.TVar</span>
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Monad.STM</span>
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Monad.Trans.Writer.Strict</span>
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Monad</span>
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Control.Monad.IO.Class</span></code></pre></div>
+<p>Lastly we’ll need some miscellaneous bits and pieces.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Data.Bits</span> ((.|.))
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">Data.Time.Clock</span>
+<span class="ot">&gt;</span> <span class="kw">import qualified</span> <span class="dt">Data.Set</span> <span class="kw">as</span> <span class="dt">S</span>
+<span class="ot">&gt;</span> <span class="kw">import </span><span class="dt">System.Exit</span></code></pre></div>
+<h2 id="types">Types</h2>
+<p>We need to be able to describe our game and since this is Haskell we’ll use lots of types.</p>
+<p><code>UserInput</code> will represent everything we want to push into our FRP network. If our game or display logic needs to know about it, it should be covered by <code>UserInput</code>.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">data</span> <span class="dt">UserInput</span> <span class="fu">=</span> <span class="dt">InputUnknown</span> <span class="dt">String</span>
+<span class="ot">&gt;</span>                <span class="fu">|</span> <span class="dt">InputTime</span> <span class="dt">Float</span>
+<span class="ot">&gt;</span>                <span class="fu">|</span> <span class="dt">InputCursor</span> <span class="dt">Float</span> <span class="dt">Float</span>
+<span class="ot">&gt;</span>                <span class="fu">|</span> <span class="dt">InputWindowSize</span> <span class="dt">Int</span> <span class="dt">Int</span>
+<span class="ot">&gt;</span>                <span class="kw">deriving</span> (<span class="dt">Show</span>)</code></pre></div>
+<p><code>UserInput</code> is a monoid of sorts - each new event replaces an old one unless the new one is <code>InputUnknown</code>. An empty event is <code>InputUnknown</code>. This will come in handy later when we have many events to step over, or if we have none and need to do only a time step.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">instance</span> <span class="dt">Monoid</span> <span class="dt">UserInput</span> <span class="kw">where</span>
+<span class="ot">&gt;</span>     mappend a (<span class="dt">InputUnknown</span> _) <span class="fu">=</span> a
+<span class="ot">&gt;</span>     mappend _ b <span class="fu">=</span> b
+<span class="ot">&gt;</span>     mempty <span class="fu">=</span> <span class="dt">InputUnknown</span> <span class="st">&quot;&quot;</span></code></pre></div>
+<p>And we’ll use an <code>OutputEvent</code> (along with <code>WriterT</code>) to allow entities within our network to have a very managed effect on the network as a whole.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">data</span> <span class="dt">OutputEvent</span> <span class="fu">=</span> <span class="dt">OutputEventUnknown</span> <span class="dt">String</span>
+<span class="ot">&gt;</span>                  <span class="fu">|</span> <span class="dt">OutputNeedsUpdate</span>
+<span class="ot">&gt;</span>                  <span class="kw">deriving</span> (<span class="dt">Ord</span>, <span class="dt">Eq</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">type</span> <span class="dt">Effect</span> <span class="fu">=</span> <span class="dt">WriterT</span> [<span class="dt">OutputEvent</span>] <span class="dt">IO</span></code></pre></div>
+<p>We’ll be rendering <code>Picture</code>s from <a href="http://hackage.haskell.org/package/gelatin-picture">gelatin-picture</a> using <code>Font</code>s provided by <a href="http://hackage.haskell.org/package/FontyFruity">FontyFruity</a>. <a href="http://hackage.haskell.org/package/FontyFruity">FontyFruity</a> is also re-exported by gelatin’s glfw backend. We’ll talk more about rendering in the next section.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">type</span> <span class="dt">Pic</span> <span class="fu">=</span> <span class="dt">Picture</span> <span class="dt">Font</span> ()</code></pre></div>
+<p>The <code>Network</code> is a varying value. This means that it represets a value that changes over some domain. When you see the type of a varying value as <code>Var m a b</code> it means that within an effect <code>m</code>, types of <code>b</code> are created with types of <code>a</code> as input. <a href="http://hackage.haskell.org/package/varying">varying</a> is an arrowized FRP implementation with a twist, so if you’ve ever used <a href="http://hackage.haskell.org/package/netwire">netwire</a> you’ll be a bit familiar. The biggest difference between <a href="http://hackage.haskell.org/package/varying">varying</a> and <a href="http://hackage.haskell.org/package/netwire">netwire</a> is that <a href="http://hackage.haskell.org/package/varying">varying</a>’s inhibition is explicit using the type <code>Var m a (Event b)</code>.</p>
+<p>Here our <code>Network</code> is defined as a varying value that depends on <code>UserInput</code>s and produces a <code>Pic</code> inside the <code>Effect</code> monad. The <code>Effect</code> monad allows our network streams to call out to the rest of the world, writing attempted side-effects to the network as a whole through our <code>WriterT</code> monad stack.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">type</span> <span class="dt">Network</span> <span class="fu">=</span> <span class="dt">Var</span> <span class="dt">Effect</span> <span class="dt">UserInput</span> <span class="dt">Pic</span></code></pre></div>
+<h2 id="rendering">Rendering</h2>
+<p>In order to render a frame we’ll need a function that uses our cache of renderers and the window reference in <code>Rez</code> to paint a <code>Pic</code> to the screen. The pic is created by our network each frame and each time we paint a frame update we’ll get back a cache of updated renderers.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; renderFrame ::</span> <span class="dt">Rez</span> <span class="ot">-&gt;</span> <span class="dt">Cache</span> <span class="dt">IO</span> <span class="dt">Transform</span> <span class="ot">-&gt;</span> <span class="dt">Pic</span> 
+<span class="ot">&gt;</span>             <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Cache</span> <span class="dt">IO</span> <span class="dt">Transform</span>)
+<span class="ot">&gt;</span> renderFrame rez cache pic <span class="fu">=</span> <span class="kw">do</span></code></pre></div>
+<p>Just like any other opengl app we need to set the viewport and clear our buffers before updating the screen.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>   (fbw,fbh) <span class="ot">&lt;-</span> getFramebufferSize <span class="fu">$</span> rezWindow rez
+<span class="ot">&gt;</span>   glViewport <span class="dv">0</span> <span class="dv">0</span> (fromIntegral fbw) (fromIntegral fbh)
+<span class="ot">&gt;</span>   glClear <span class="fu">$</span> <span class="dt">GL_COLOR_BUFFER_BIT</span> <span class="fu">.|.</span> <span class="dt">GL_DEPTH_BUFFER_BIT</span></code></pre></div>
+<p>And now for the headline act, <code>renderPrimitives</code> and <code>pictureToR2Primitives</code>. Defined in <a href="http://hackage.haskell.org/package/renderable">renderable</a> and <a href="http://hackage.haskell.org/package/gelatin-picture">gelatin-picture</a> respectively, they do most of the heavy lifting for us. <code>pictureToR2Primitives</code> turns our <code>Pic</code> into renderable primitives - mainly colored and textured lines and triangles. <code>renderPrimitives</code> renders the list of primitives and returns a new cache, allocating new renderings for us on-the-fly and cleaning up resources previously allocated by now stale renderers.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>   newCache <span class="ot">&lt;-</span> renderPrimitives rez cache <span class="fu">$</span> pictureToR2Primitives pic</code></pre></div>
+<p>Now swap the buffers on our OpenGL window and return the new cache.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>   swapBuffers <span class="fu">$</span> rezWindow rez
+<span class="ot">&gt;</span>   shouldClose <span class="ot">&lt;-</span> windowShouldClose <span class="fu">$</span> rezWindow rez
+<span class="ot">&gt;</span>   <span class="kw">if</span> shouldClose <span class="kw">then</span> exitSuccess <span class="kw">else</span> threadDelay <span class="dv">100</span>
+<span class="ot">&gt;</span>   return newCache </code></pre></div>
+<h2 id="a-bit-more-infrastructure">A Bit More Infrastructure</h2>
+<p>Finally we can declare our main infrastructure type, <code>AppData</code>. An <code>AppData</code> contains the <code>Network</code> in its current state, a cache of renderers that will be managed by <a href="http://hackage.haskell.org/package/renderable">renderable</a>, and a list of user input events.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> <span class="kw">data</span> <span class="dt">AppData</span> <span class="fu">=</span> <span class="dt">AppData</span> {<span class="ot"> appNetwork ::</span> <span class="dt">Network</span>
+<span class="ot">&gt;</span>                        ,<span class="ot"> appCache   ::</span> <span class="dt">Cache</span> <span class="dt">IO</span> <span class="dt">Transform</span>
+<span class="ot">&gt;</span>                        ,<span class="ot"> appEvents  ::</span> [<span class="dt">UserInput</span>]
+<span class="ot">&gt;</span>                        ,<span class="ot"> appUTC     ::</span> <span class="dt">UTCTime</span>
+<span class="ot">&gt;</span>                        }</code></pre></div>
+<h2 id="the-network">The Network</h2>
+<p>We need a network to test our infrastructure, so for now we’ll use the simplest network I can think of that demonstrates change over time and user input - a circle that follows the mouse, changing shape and color over time.</p>
+<h3 id="cursor-move-events">Cursor Move Events</h3>
+<p>In order to do this we’ll first need a stream of cursor move events.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; cursorMoved ::</span> (<span class="dt">Applicative</span> m, <span class="dt">Monad</span> m) <span class="ot">=&gt;</span> <span class="dt">Var</span> m <span class="dt">UserInput</span> (<span class="dt">Event</span> (<span class="dt">V2</span> <span class="dt">Float</span>))</code></pre></div>
+<p>This type signature shows that our stream will ‘consume’ user input and ‘emit’ position events. We can use the <code>var</code> constructor to turn a pure function into a stream</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> cursorMoved <span class="fu">=</span> var f <span class="co">-- :: Var m InputEvent (Maybe (V2 Float))</span></code></pre></div>
+<p>and then combine that with the event generator <code>onJust</code> which takes a <code>Maybe a</code> as input and produces a stream of <code>Event a</code>.</p>
+<p>We use the plug right <code>~&gt;</code> combinator to plug the output of <code>var f</code> into the input of <code>onJust</code>.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     <span class="fu">~&gt;</span> onJust</code></pre></div>
+<p>And now we write our function that maps input values to <code>Maybe (V2 Float)</code>.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     <span class="kw">where</span> f (<span class="dt">InputCursor</span> x y) <span class="fu">=</span> <span class="dt">Just</span> <span class="fu">$</span> <span class="dt">V2</span> x y
+<span class="ot">&gt;</span>           f _ <span class="fu">=</span> <span class="dt">Nothing</span></code></pre></div>
+<h3 id="cursor-position">Cursor Position</h3>
+<p>Now we can create a stream that produces the current cursor position each frame. We use <code>V2 -1 -1</code> as a default position before the cursor has moved.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; cursorPosition ::</span> (<span class="dt">Applicative</span> m, <span class="dt">Monad</span> m) <span class="ot">=&gt;</span> <span class="dt">Var</span> m <span class="dt">UserInput</span> (<span class="dt">V2</span> <span class="dt">Float</span>)
+<span class="ot">&gt;</span> cursorPosition <span class="fu">=</span> cursorMoved <span class="fu">~&gt;</span> foldStream (\_ v <span class="ot">-&gt;</span> v) (<span class="fu">-</span><span class="dv">1</span>)</code></pre></div>
+<p><code>foldStream</code> works just like <code>foldl</code>, but it only operates on streams of Events, folding event values into an accumulator. In this case the accumulator is simply the latest cursor position.</p>
+<h3 id="time-deltas">Time Deltas</h3>
+<p>To demonstrate that our pull network can be turned into a push network we’ll describe a circle that follows the cursor <em>and</em> changes shape and color over time. So far we have a stream for the cursor position but now we’ll need a stream of time deltas. The reason we need deltas is that we’ll use some tweening streams from <code>varying</code> that require deltas as input. This breaks some of the rules of hard FRP - we’re not supposed to deal in deltas, but I think you’ll find that once it’s done we don’t have to use deltas for anything more than a plug.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; timeUpdated ::</span> (<span class="dt">Applicative</span> m, <span class="dt">Monad</span> m) <span class="ot">=&gt;</span> <span class="dt">Var</span> m <span class="dt">UserInput</span> (<span class="dt">Event</span> <span class="dt">Float</span>)
+<span class="ot">&gt;</span> timeUpdated <span class="fu">=</span> var f <span class="fu">~&gt;</span> onJust
+<span class="ot">&gt;</span>     <span class="kw">where</span> f (<span class="dt">InputTime</span> t) <span class="fu">=</span> <span class="dt">Just</span> t
+<span class="ot">&gt;</span>           f _ <span class="fu">=</span> <span class="dt">Nothing</span></code></pre></div>
+<p>We need to fill in the gaps in <code>timeUpdated</code> when it doesn’t produce an event.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; deltas ::</span> (<span class="dt">Applicative</span> m, <span class="dt">Monad</span> m) <span class="ot">=&gt;</span> <span class="dt">Var</span> m <span class="dt">UserInput</span> <span class="dt">Float</span>
+<span class="ot">&gt;</span> deltas <span class="fu">=</span> <span class="dv">0</span> <span class="ot">`orE`</span> timeUpdated</code></pre></div>
+<p>The implementation of <code>deltas</code> says “produce <code>0</code> unless <code>timeUpdated</code> produces an event - if so, produce the value of that event.</p>
+<h3 id="requesting-updates">Requesting Updates</h3>
+<p>In order to have smooth animation over time we need to know that the network requires frequent updates. In our main loop we’ll block until user input happens, or the network requests through the Writer monad that itself be updated.</p>
+<p>We’ll use the monadic constructor <code>varM</code> in order to write a stream that can reach out to the Writer monad, make the request and pass whatever input it received through as output. It’s a bit hacky as far as FRP goes, but this is what’s required to use our system in a pushy fashion.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; requestUpdate ::</span> <span class="dt">Var</span> <span class="dt">Effect</span> a a
+<span class="ot">&gt;</span> requestUpdate <span class="fu">=</span> varM <span class="fu">$</span> \input <span class="ot">-&gt;</span> <span class="kw">do</span>
+<span class="ot">&gt;</span>     tell [<span class="dt">OutputNeedsUpdate</span>] 
+<span class="ot">&gt;</span>     return input</code></pre></div>
+<p>You can see that both <code>var</code> and <code>varM</code> use regular functions to create a stream. The input to the stream is the only parameter to the function and the output of the function becomes the output of the stream. Check out the other constructors in the <a href="http://hackage.haskell.org/package/varying/docs/Control-Varying-Core.html#g:1">varying docs</a>.</p>
+<h3 id="time">Time</h3>
+<p>We’ll combine our <code>deltas</code> stream and <code>requestUpdate</code> in order to create a <code>time</code> stream. Whenever a part of our network depends on time we can plug <code>time</code> into it, and it will simultaneously provide a time signal and request that the network be update often. If no part of the network depends on time, our main loop will only render on user input.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; time ::</span> <span class="dt">Var</span> <span class="dt">Effect</span> <span class="dt">UserInput</span> <span class="dt">Float</span>
+<span class="ot">&gt;</span> time <span class="fu">=</span> deltas <span class="fu">~&gt;</span> requestUpdate</code></pre></div>
+<p>Since we now have time flowing through our network we can use the tweening capabilities that ship with <a href="http://hackage.haskell.org/package/varying">varying</a> in <strong>Control.Varying.Tween</strong>. Tweens run one step higher in abstraction in order to play with varying values that are only defined over a select domain. These are called splines.</p>
+<h3 id="tweening-with-splines">Tweening With Splines</h3>
+<p>In <a href="http://hackage.haskell.org/package/varying">varying</a> a spline is a temporary changing value that has an end result. Splines are essentially chains of event streams - when an event stream stops producing, the current spline terminates and the next event stream takes over. The input, output and result value of a spline are encoded in the spline’s type signature. A ‘Spline a b m c’ describes a spline that takes ‘a’s as input, produces ’b’s as output - runs in the ’m’ monad and results in ‘c’. Our tweening spline will take time (<code>Float</code>) as input, return <code>Float</code> as output and result in the last tweened output value, <code>Float</code>. We’ll want to change the duration of the spline so we’ll write a function that takes the duration and returns our spline.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; easeInOutSpline ::</span> (<span class="dt">Applicative</span> m, <span class="dt">MonadIO</span> m) 
+<span class="ot">&gt;</span>                 <span class="ot">=&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Spline</span> <span class="dt">Float</span> <span class="dt">Float</span> m <span class="dt">Float</span>
+<span class="ot">&gt;</span> easeInOutSpline t <span class="fu">=</span> <span class="kw">do</span>
+<span class="ot">&gt;</span>     halfway <span class="ot">&lt;-</span> tween easeInExpo <span class="dv">1</span> <span class="dv">0</span> <span class="fu">$</span> t<span class="fu">/</span><span class="dv">2</span></code></pre></div>
+<p>Above we tween from <code>1</code> to <code>0</code> over <code>t/2</code> seconds using an easing function. The spline produces the interpolated values until <code>t/2</code> seconds, and then results in the last interpolated value, which is either <code>0</code> or very close to <code>0</code>. Since our spline is monadic we can check by printing it to our console.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     liftIO <span class="fu">$</span> putStrLn <span class="fu">$</span> <span class="st">&quot;halfway done tweening at &quot;</span> <span class="fu">++</span> show halfway</code></pre></div>
+<p>And then complete the tween.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     tween linear halfway <span class="dv">1</span> <span class="fu">$</span> t<span class="fu">/</span><span class="dv">2</span></code></pre></div>
+<p>As you can see, with splines we can use a monadic notation. Since a spline is only defined over a certain domain it can be considered to terminate, giving an end result and allowing you to chain another spline. This chaining or sequencing is what makes splines monadic.</p>
+<h3 id="actually-using-splines">Actually Using Splines</h3>
+<p>So we’ve got a spline that represents a tweened number over time, but splines are only continuous over a domain and we’d like to use a completely continuous signal to tween our <code>Pic</code>. <code>Spline</code> runs at one level of abstraction above <code>Var</code> and as such, we can run the <code>Spline</code> to turn it back into a <code>Var</code>. All we need is to use <code>execSpline</code> and give it an initial value. The resulting <code>Var</code> will produce the values of the <code>Spline</code> until the <code>Spline</code> concludes. Once the <code>Spline</code> terminates the <code>Var</code> will use the last value forever. If the spline <em>never</em> produces, the initial value will be produced forever.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; easeInOutExpo ::</span> (<span class="dt">Applicative</span> m, <span class="dt">MonadIO</span> m) <span class="ot">=&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Var</span> m <span class="dt">Float</span> <span class="dt">Float</span> 
+<span class="ot">&gt;</span> easeInOutExpo <span class="fu">=</span> execSpline <span class="dv">1</span> <span class="fu">.</span> easeInOutSpline</code></pre></div>
+<p>We’d like to demonstrate that the network “turns off” when time is no longer a dependency, which means we’ll have to set up a network that depends on time for a while and then moves on. Since this sounds like sequencing event streams we’ll use splines again.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; multSequence ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Spline</span> <span class="dt">UserInput</span> <span class="dt">Float</span> <span class="dt">Effect</span> <span class="dt">Float</span></code></pre></div>
+<p>Note how the type signature now contains <code>Effect</code> since we’ll need to use time, which requires the ability to write out update requests.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span> multSequence t <span class="fu">=</span> <span class="kw">do</span>
+<span class="ot">&gt;</span>     (val,_) <span class="ot">&lt;-</span> (time <span class="fu">~&gt;</span> easeInOutExpo t) <span class="ot">`untilEvent`</span> (time <span class="fu">~&gt;</span> after t)
+<span class="ot">&gt;</span>     return val</code></pre></div>
+<p>Above we plug time into two streams - the first is our tweening stream and the second is an event stream we use as a timer. <code>time ~&gt; after t</code> will produce <code>Event ()</code> forever after <code>t</code> seconds. We combine the two streams using the combinator <code>untilEvent</code>. This combinator produces output values using the first stream until an event occurs in the second stream, then returns the last values of each in a tuple. <code>after</code> will produce <code>Event ()</code>, and <code>untilEvent</code> unwraps the event value for you, tupling it up - making the right value of our spline’s result <code>()</code>, which we can ignore.</p>
+<p>All together, <code>multSequence</code> is a spline that depends on time for <code>t</code> seconds and then returns <code>1</code> forever. This should help us demonstrate that the network no longer depends on time and can render sporatically whenever a user event comes down the pipe.</p>
+<p>Lastly we’ll turn that spline into a continuous stream.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; multOverTime ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Var</span> <span class="dt">Effect</span> <span class="dt">UserInput</span> <span class="dt">Float</span>
+<span class="ot">&gt;</span> multOverTime <span class="fu">=</span> execSpline <span class="dv">0</span> <span class="fu">.</span> multSequence </code></pre></div>
+<h3 id="the-big-picture">The Big Picture</h3>
+<p>Now we can combine our network. We can start by writing a pure function that takes a position, scale, red, green and blue parameters and returns a <code>Pic</code>. This <code>Pic</code> is what we’ll render each frame.</p>
+<p>Here we use functions from <a href="http://hackage.haskell.org/package/gelatin-picture">gelatin-picture</a> to translate, scale and fill a circle of radius 100.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; picture ::</span> <span class="dt">V2</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Pic</span>
+<span class="ot">&gt;</span> picture cursor s r g b <span class="fu">=</span> 
+<span class="ot">&gt;</span>     move cursor <span class="fu">$</span> scale (<span class="dt">V2</span> s s) <span class="fu">$</span> withFill (solid <span class="fu">$</span> <span class="dt">V4</span> r g b <span class="dv">1</span>) <span class="fu">$</span> circle <span class="dv">100</span> </code></pre></div>
+<p>We put it all together with <a href="http://hackage.haskell.org/package/varying">varying</a>s Applicative instance to construct our <code>Pic</code> stream.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; network ::</span> <span class="dt">Var</span> <span class="dt">Effect</span> <span class="dt">UserInput</span> <span class="dt">Pic</span>
+<span class="ot">&gt;</span> network <span class="fu">=</span> picture <span class="fu">&lt;$&gt;</span> cursorPosition 
+<span class="ot">&gt;</span>                   <span class="fu">&lt;*&gt;</span> multOverTime <span class="dv">3</span>
+<span class="ot">&gt;</span>                   <span class="fu">&lt;*&gt;</span> multOverTime <span class="dv">1</span> <span class="fu">&lt;*&gt;</span> multOverTime <span class="dv">2</span> <span class="fu">&lt;*&gt;</span> multOverTime <span class="dv">3</span></code></pre></div>
+<h2 id="our-game-loop">Our Game Loop</h2>
+<p>In our main loop we need to make a window and write functions for pushing input and time into our network. We’ll sample our network in one of these functions and render it.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt; main ::</span> <span class="dt">IO</span> ()
+<span class="ot">&gt;</span> main <span class="fu">=</span> <span class="kw">do</span></code></pre></div>
+<p>Start up glfw, receiving a <code>Rez</code>. A <code>Rez</code> is a type of resource that <a href="http://hackage.haskell.org/package/gelatin-glfw">gelatin-glfw</a> uses to render. It’s a composite type containing a glfw window and some shaders.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     rez <span class="ot">&lt;-</span> startupGLFWBackend <span class="dv">800</span> <span class="dv">600</span> <span class="st">&quot;Push Pull&quot;</span> <span class="dt">Nothing</span> <span class="dt">Nothing</span> 
+<span class="ot">&gt;</span>     <span class="kw">let</span> window <span class="fu">=</span> rezWindow rez
+<span class="ot">&gt;</span>     setWindowPos window <span class="dv">400</span> <span class="dv">400</span></code></pre></div>
+<p>Next we’ll need a tvar to contain our app data - that way we can access and modify it from any thread. This is going to be a big part of turning our pull based FRP network into a push-esque system, where we only render what and when we need.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     t0   <span class="ot">&lt;-</span> getCurrentTime
+<span class="ot">&gt;</span>     tvar <span class="ot">&lt;-</span> atomically <span class="fu">$</span> newTVar <span class="dt">AppData</span>{ appNetwork <span class="fu">=</span> network 
+<span class="ot">&gt;</span>                                         , appCache   <span class="fu">=</span> mempty
+<span class="ot">&gt;</span>                                         , appEvents  <span class="fu">=</span> []
+<span class="ot">&gt;</span>                                         , appUTC     <span class="fu">=</span> t0
+<span class="ot">&gt;</span>                                         }</code></pre></div>
+<p><a href="http://hackage.haskell.org/package/varying">varying</a> is a pull based FRP implementation. This (roughly) means that as the programmer you describe a network using various streams, combining them together until you have one final stream that you can “pull” or sample from each frame. Your final game data type will essentially just fall out of the network every frame. The downside to a pull network is that you have to sample it often, typically every frame - regardless of whether or not anything has changed. This is what we are trying to avoid.</p>
+<p>In an attempt to remedy that situation we’ll only run the network when we receive an event from glfw - or if our network requests that we run it. Let’s define the function we’ll use to “push” a user event into our app.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     <span class="kw">let</span> push input <span class="fu">=</span> atomically <span class="fu">$</span> modifyTVar' tvar <span class="fu">$</span> \app <span class="ot">-&gt;</span> 
+<span class="ot">&gt;</span>                          app{ appEvents <span class="fu">=</span> appEvents app <span class="fu">++</span> [input] }</code></pre></div>
+<p>Separately we need a function to input time. We’ll run this any time glfw receives an event of any kind. Since we’ll do this any time glfw receives an event this is also a good place to render the frame and update our cache.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>         step <span class="fu">=</span> <span class="kw">do</span>  
+<span class="ot">&gt;</span>             t <span class="ot">&lt;-</span> getCurrentTime
+<span class="ot">&gt;</span>             putStrLn <span class="fu">$</span> <span class="st">&quot;Stepping &quot;</span> <span class="fu">++</span> show t</code></pre></div>
+<p>Above we print the current time just so we know the app is stepping in the console.</p>
+<p>Now we’ll run the network. A little magic happens here. <code>stepMany</code> takes a list of input to iterate your network over, returning the last value. The magic part and the reason for <code>UserInput</code>s <code>Monoid</code> instance is that stepMany runs over each item of the list until it gets to <code>[]</code>. Then it runs one more time using the <code>mempty</code> event. Ultimately, if you fed your network an empty list of events, <code>stepMany</code> would create one and step your network over it.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>             <span class="dt">AppData</span> net cache events lastUTC <span class="ot">&lt;-</span> readTVarIO tvar
+<span class="ot">&gt;</span>             <span class="kw">let</span> dt <span class="fu">=</span> max oneFrame <span class="fu">$</span> realToFrac <span class="fu">$</span> diffUTCTime t lastUTC 
+<span class="ot">&gt;</span>                 evs <span class="fu">=</span> <span class="dt">InputTime</span> dt <span class="fu">:</span> events
+<span class="ot">&gt;</span>             ((pic, nextNet), outs) <span class="ot">&lt;-</span> runWriterT <span class="fu">$</span> stepMany evs net </code></pre></div>
+<p>Now we can render our <code>Pic</code>.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>             newCache <span class="ot">&lt;-</span> renderFrame rez cache pic</code></pre></div>
+<p>And write our new app state.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>             atomically <span class="fu">$</span> writeTVar tvar <span class="fu">$</span> <span class="dt">AppData</span> nextNet newCache [] t</code></pre></div>
+<p>And apply our network’s requests. We fold our output using a <code>Set</code> since we only want unique requests. We don’t want time going super fast just because more network nodes request it. Time…woah.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>             <span class="kw">let</span> requests <span class="fu">=</span> S.toList <span class="fu">$</span> foldr S.insert S.empty outs
+<span class="ot">&gt;</span>             mapM_ applyOutput requests </code></pre></div>
+<p>Here’s where the update request magic happens. We spawn a new thread to wait a duration, whatever we see fit. In this case it’s <code>oneFrame</code>, or one thirtieth of a second. Then we <code>push</code> a <code>InputTime</code> event into our app and call glfw’s <code>postEmptyEvent</code>. <code>postEmptyEvent</code> will wake up the main thread from <code>waitEvents</code>, which you’ll see later.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>         oneFrame <span class="fu">=</span> <span class="dv">1</span><span class="fu">/</span><span class="dv">30</span> 
+<span class="ot">&gt;</span>         applyOutput <span class="dt">OutputNeedsUpdate</span> <span class="fu">=</span> void <span class="fu">$</span> async <span class="fu">$</span> <span class="kw">do</span> 
+<span class="ot">&gt;</span>             threadDelay <span class="fu">$</span> round (oneFrame <span class="fu">*</span> <span class="dv">1000</span>)
+<span class="ot">&gt;</span>             postEmptyEvent
+<span class="ot">&gt;</span>         applyOutput _ <span class="fu">=</span> return ()</code></pre></div>
+<p>What about our user input events? I’m glad you asked. For this we can wire up glfw’s nifty callbacks. They’ll simply push some events in our event queue.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     setCursorPosCallback window <span class="fu">$</span> <span class="dt">Just</span> <span class="fu">$</span> \_ x y <span class="ot">-&gt;</span>
+<span class="ot">&gt;</span>         push <span class="fu">$</span> <span class="dt">InputCursor</span> (realToFrac x) (realToFrac y)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     setWindowSizeCallback window <span class="fu">$</span> <span class="dt">Just</span> <span class="fu">$</span> \_ w h <span class="ot">-&gt;</span> <span class="kw">do</span>
+<span class="ot">&gt;</span>         print (<span class="st">&quot;window size&quot;</span>,w,h)
+<span class="ot">&gt;</span>         push <span class="fu">$</span> <span class="dt">InputWindowSize</span> w h</code></pre></div>
+<p>Here is a nifty hack. In this callback we won’t push an event, we’ll just call <code>step</code> to update our app while the window is refreshing. This gives the app the ability to run even when the window is actively being resized.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     setWindowRefreshCallback window <span class="fu">$</span> <span class="dt">Just</span> <span class="fu">$</span> \_ <span class="ot">-&gt;</span> <span class="kw">do</span>
+<span class="ot">&gt;</span>         putStrLn <span class="st">&quot;widow refresh&quot;</span>
+<span class="ot">&gt;</span>         step</code></pre></div>
+<p>And now we can loop forever! We process all the stored events and render our app. Then we call <code>waitEvents</code> which will put the main thread to sleep until some events have been stored - rinse and repeat.</p>
+<p>Output requests for updates will be scheduled in a separate thread and will post an empty event, waking up the main thread from <code>waitEvents</code> - causing our loop to recurse.</p>
+<div class="sourceCode"><pre class="sourceCode literate literatehaskell"><code class="sourceCode literatehaskell"><span class="ot">&gt;</span>     <span class="kw">let</span> loop <span class="fu">=</span> step <span class="fu">&gt;&gt;</span> waitEvents <span class="fu">&gt;&gt;</span> loop
+<span class="ot">&gt;</span>     loop</code></pre></div>
+<h3 id="conclusion">Conclusion</h3>
+<p>FRP is a pretty cool thing. It’s got some great ideas and its (mostly) a nice way to organize your code. It encourages very granular functions and by providing a small feedback mechanism you can remedy some of the bitter taste of constant rendering.</p>
+<p>Hopefully this tutorial has been helpful. Please comment at HN or Reddit, constructive or not! You can say things like “I hate me an FRP” or “I learn me some streams, hot dang.” Thanks for reading :)</p>
+<p>Oh - also - don’t forget that this is a literate haskell file and can be built and run in standard cabal fasion.</p></div>
+        </div>
+      </div>
+    </div>
+    <!-- google analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-47072737-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
