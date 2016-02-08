@@ -86,4 +86,6 @@ build git = hakyllWith config $ do
             >>= relativizeUrls
 
 main :: IO ()
-main = readProcess "git" ["describe","--dirty"] "" >>= build
+main = 
+    readProcess "git" ["log","--pretty=format:%h", "-n", "1"] "" 
+        >>= build
