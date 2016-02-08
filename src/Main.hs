@@ -12,18 +12,29 @@ module Main where
 
 import Hakyll
 import Data.Monoid
+import Control.Monad (liftM)
 import System.FilePath
+import System.Process
 import Text.Pandoc.Options
 import Text.HTML.TagSoup
 
-main :: IO ()
-main = hakyllWith config $ do
+config :: Configuration
+config = defaultConfiguration
+
+context :: String -> Context String
+context git = constField "commit" git <> defaultContext
+
+postCtx :: String -> Context String
+postCtx git = dateField "date" "%B %e, %Y" <> context git
+
+build :: String -> IO ()
+build git = hakyllWith config $ do
+    match "templates/*" $ compile templateCompiler
+
     -- do images
     match "img/*.*" $ do
         route idRoute
         compile copyFileCompiler
-
-    match "templates/*" $ compile templateCompiler
 
     -- do articles
     match "articles/*" $ do
@@ -52,7 +63,7 @@ main = hakyllWith config $ do
                 bootstrapTheImg t@(TagOpen "img" atts) = TagOpen "img" $ atts ++ [("class", fromAttrib "class" t ++ " img-responsive")]
                 bootstrapTheImg x = x
             page <- loadAndApplyTemplate "templates/default.html" 
-                                         defaultContext 
+                                         (context git)
                                          item' 
             relativizeUrls page >>= bootstrapTheImgs
 
@@ -60,9 +71,9 @@ main = hakyllWith config $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "articles/*"
-            let ctx = listField "posts" postCtx (return posts) <>
+            let ctx = listField "posts" (postCtx git) (return posts) <>
                       constField "title" "Articles"  <>
-                      defaultContext
+                      context git
             makeItem ""
                 >>= loadAndApplyTemplate "templates/articles.html" ctx
                 >>= loadAndApplyTemplate "templates/default.html" ctx
@@ -70,14 +81,9 @@ main = hakyllWith config $ do
 
     match "content/*" $ do
         route $ customRoute $ takeFileName . flip replaceExtension ".html" . toFilePath
-        compile $ pandocCompiler
-            >>= return . fmap demoteHeaders
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        compile $ liftM (fmap demoteHeaders) pandocCompiler
+            >>= loadAndApplyTemplate "templates/default.html" (context git)
             >>= relativizeUrls
 
-config :: Configuration
-config = defaultConfiguration { deployCommand = cmd }
-    where cmd = "./upload.sh"
-
-postCtx :: Context String
-postCtx = dateField "date" "%B %e, %Y" <> defaultContext
+main :: IO ()
+main = readProcess "git" ["describe","--dirty"] "" >>= build

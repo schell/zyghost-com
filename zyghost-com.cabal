@@ -64,7 +64,8 @@ executable zyghost-com
                        hakyll >= 4.7,
                        filepath >= 1.4 && < 1.5,
                        pandoc >= 1.15 && < 1.16,
-                       tagsoup >= 0.13 && < 0.14
+                       tagsoup >= 0.13 && < 0.14,
+                       process >= 1.2 && < 1.5
 
   -- Directories containing source files.
   hs-source-dirs:      src
