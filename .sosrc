@@ -9,6 +9,7 @@
   - articles/.*\.(md|lhs)$
   - \.cabal$ 
   - .*\.hs$
+  - ^css/.*\.css$
   commands:
   - stack exec zyghost-com clean
   - stack exec zyghost-com build

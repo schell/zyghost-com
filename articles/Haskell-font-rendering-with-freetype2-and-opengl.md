@@ -1,16 +1,16 @@
 ---
-toc: yes
 title: Rendering text in Haskell using Freetype2 and OpenGL 
 date: 2014-08-01
 description: A first attempt at rendering text
+has-toc: yes
 ---
 
 Intro
------
+=====
 My last adventure in programming was using Haskell to hook up [freetype2](http://freetype.org/freetype2/) to [OpenGL](https://www.opengl.org/). Freetype is a font rasterization library. The idea is that you use freetype to load a font and render it into an opengl texture, then render some font textured geometry in order to display strings of characters on the screen. The idea is simple enough but like many graphics projects there a a couple of gotchas that I bumped up against and dumped a significant amount of time into. I\'m including code below to load a character into an OpenGL texture but I\'m not including the surrounding code to render that texture. You should be able to use the loaded texture to draw a quad to see the character.
 
 Setup
------
+=====
 So what I would like is a function that given a path to a ttf font file, a character and a pixel size - returns an opengl texture object that I can use to render a quad representing the character.
 
 ```haskell
@@ -19,10 +19,11 @@ loadCharacter path char px = undefined
 ```
 
 Freetype
---------
+========
 The first step was to find some freetype2 bindings. Jason Dagit (lispy on #haskell irc) wrote some raw bindings that are on [hackage](http://hackage.haskell.org/package/freetype2). It works quite well and he has also posted an example of [rendering a string of characters as ascii images in a terminal](https://github.com/dagit/freetype2/blob/cabalization/Main.hs). Between that and the [freetype2 tutorial](http://freetype.org/freetype2/docs/tutorial/step1.html) you should be able to get a good idea of the process behind rendering a font glyph into a freetype bitmap.
 
-###Helpers
+Helpers
+-------
 Here we have some convenience functions. The first unboxes an IO FT_Error and fails if the FT_Error is non zero.
 
 ```haskell
@@ -135,9 +136,10 @@ loadCharacter path char px = do
 Then the next problem is getting that bitmap into an OpenGL texture.
 
 OpenGL
-------
+======
 
-### First try
+First try
+---------
 Now that we have our glyph rendering into a freetype bitmap we can take that bitmap and buffer it into an OpenGL texture. The first step is to generate our texture name, activate it, etc - all the normal texture stuff.
 
 ```haskell
@@ -270,7 +272,8 @@ Which gives us a perfectly rendered anti-aliased glyph.
 
 ![a perfect glyph](/img/Screen Shot 2014-01-12 at 1.01.58 PM.png)
 
-### Fixing it with row alignment
+Fixing it with row alignment
+----------------------------
 Later thanks to reddit I found out that you can reset the row alignment in OpenGL with one call.
 
 ```haskell
@@ -280,7 +283,7 @@ rowAlignment Unpack $= 1
 This will change the default unpacking row alignment from 4 to 1 and fix our tearing issue.
 
 Finally
--------
+=======
 Altogether the code will look something like
 
 ```haskell

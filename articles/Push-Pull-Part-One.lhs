@@ -1,6 +1,6 @@
 ---
 title: A Push Pull FRP - Part One - Infrastructure
-toc: yes
+has-toc: yes
 date: 2016-02-03
 description: An introduction to varying and gelatin-picture
 ---

@@ -1,8 +1,8 @@
 ---
-toc: yes
 title: Better Renderable Types
 date: 2015-10-03
 description: Purely functional datatypes that can be rendered.
+has-toc: yes
 ---
 I've been working on a purely functional GUI and I realized that the structures 
 I've been using for rendering could be easily abstracted out into a 
@@ -13,7 +13,7 @@ The main idea behind `renderable` is that all graphics can be broken down into
 primitives.
 
 Rendering
----------
+=========
 A rendering is simply an effectful value that draws something on the screen in
 a specific place.  Also needed is an effectful value that releases any 
 resources allocated when creating the rendering. Since both values are created 
@@ -21,7 +21,7 @@ at the same time from here on out a "rendering" will be a [tuple of the two](htt
 be rendering.
 
 Primitive
-----------
+=========
 First off we have the typeclass [Primitive](http://hackage.haskell.org/package/renderable-0.1.0.0/docs/Data-Renderable.html#t:Primitive). A primitive is an atomic unit of "graphics". In my current project I've
 chosen to render boxes, polylines and text. Each of these are a primitive that
 I'll use in different combinations to create my interface. `Primitive` has three 
@@ -158,7 +158,7 @@ data PlainText = PlainText { plainTxtString :: String
 ```
 
 Composite
----------
+=========
 [The next step up in abstraction](http://hackage.haskell.org/package/renderable-0.1.0.0/docs/Data-Renderable.html#t:Composite) applies when you have described some adequate number of primitive types. 
 From here on up you can graphically represent new types as a heterogeneous list 
 of those more primitive types. [Element](http://hackage.haskell.org/package/renderable-0.0.0.2/docs/Data-Renderable.html#t:Element) 
@@ -196,7 +196,7 @@ instance Composite TextInput IO Rez Transform where
 ```
 
 Rendering a frame
------------------
+=================
 After you have some datatypes to render from primitives it's dead simple to
 get them on the screen. All your loop has to keep around is the current data
 to render and the last rendering cache. Then you can use [renderData](http://hackage.haskell.org/package/renderable-0.1.0.0/docs/Data-Renderable.html#v:renderData) to render your data to the screen.
@@ -234,7 +234,7 @@ never changes you don't have to allocate any new resources - you shouldn't even
 have to think about it.
 
 All done
---------
+========
 This is all a work in progress but I wanted to get these packages out to 
 hopefully get some feedback before I settle on an API (I've already broken it 
 once)! My next article will be about another project called [gooey](http://hackage.haskell.org/package/gooey). 

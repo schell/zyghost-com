@@ -13,4 +13,4 @@ on.
 
 I like the idea of DNA, code, blueprints and plans as the zyghost of things that
 can exist in the physical world and this blog serves to explore the process 
-that brings a zyghost into existence. Zomg!
+that brings a zyghost into existence. 

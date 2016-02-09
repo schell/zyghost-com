@@ -6,3 +6,4 @@ cabal.sandbox.config
 dist/
 *.sw[a-z]
 .stack-work
+build/

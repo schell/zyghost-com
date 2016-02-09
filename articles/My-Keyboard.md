@@ -41,9 +41,9 @@ and have made some really great strides toward recreating the Datahand. I\'d
 love to get in a group buy of that project if it ever comes to fruition. In the
 meantime I\'ve bought a 3d printer and started designing my own take on the old
 Datahand with a few twists. I can\'t wait to show you. Here\'s a picture of my 
-desktop real quick:
+desktop real quick: 
 
-![prototyping a new keyboard](/img/IMG_0675.JPG)
+![prototyping a new keyboard](/img/IMG_0675.JPG){.img-responsive}
 
 Pictured here are three prototype magnetic switches, some refuse, tools, 
 [a teensy++](http://pjrc.com/store/teensypp.html)
