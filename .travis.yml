@@ -27,7 +27,7 @@ deploy:
   bucket: zyghost.com
   region: us-west-1
   skip_cleanup: true
-  local-dir: _site
+  local-dir: build
   acl: public_read
   on:
     repo: schell/zyghost-com
