@@ -9,25 +9,22 @@ before_install:
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards
   --strip-components=1 -C ~/.local/bin '*/stack'
-
 script:
 - stack --no-terminal --install-ghc build
 - stack exec zyghost-com clean
 - stack exec zyghost-com build
-
 cache:
   directories:
   - "$HOME/.stack"
-
 deploy:
   provider: s3
-  access_key_id: AKIAIK7QVDPAZR2VYUSQ
+  access_key_id: AKIAJOPJPECIU2VKXQIA
   secret_access_key:
-    secure: LcGRI/ZY6tdsU/KUBvPErmN4tUTXJZwJlYePuijSAdBrnUuT08bQr5rC7RKzyMxnXvdAKMNMdd/n599xKvUCcLZ3j1q0+l7sdvMIZ0SGgGYamoSZjKSR8zTDz5AtDlqT6SsZKh2sEHKrF4NTQ7A+UOW4Xq0PAKGAJYVVJOYOXeJJIBTr/ZAaX1HDib4VLWdZkUwPgQohD0jgVYtGfubrT41j2SBKUhVn9Dmfq2lyrmTRIA9j+8mUkv1ney7ARBnuSUo7kPemoBaTeGHX/KC/wA8Dwx1Gzus0kTo7/PJwmGheCMXXm1by5VIadl6VcsXdnyzo16m61TI5yfTVcbZVN0xGFgCFyiR5YrM6C5ZJVJZ5vd1KUA9jGedYFa9QjhTdFa3xzDEwsNGmqS5+eJyRe2ntXP5yEjlF2ABiojACcNkykGPPBwdxz0BnXgW2BihpMfaNCp9vagOyOURZ9Sl+vocIntaOUdbqOAf5LaTwahfFHaUzhh2s00Xkda78HiM9xOU8x0DRI5wWS9ZIq1AJp5BjcI2kDYu8QuxekHF3KJ3Td3vY9FMjo5UnlfLcaflyAy5/X7z3FHR/cTbirB32D1FbzozIf6Q340VqrxgusvQm063ztiC+WAiY6DDxOYyqf+pb5wnzjjoP794ZkC7asCPf/MqnjK9G1T/xwUrcv2k=
+    secure: VmKBdLXWfn3PWdI0peKp9QlDyPMs9cS3T6BFm46Zn8B/kZ18v6gasza0QhAd1PGmh8IU+V3eov4cszK8ekjQi5My7wdK8eKgqH7SubqS3zDrx86T5TO7OoJH6V3IqaMkUAox1ihFDX2tN2ZcXiM57FPKFpKU9npQtov6pWtSJIfUQPgbu2UCsjJRZ0/Fz1f560TKIMCgo/s+n3D6RvzsBuUUPU2GZzce+zJusFA8enwqsj2nUmkfeASQL0GO+7ErDKLqPvDoqz2vk653bjqIhcY37foT29PCJFF7/FYE8ligyVJpayx8ToL5b1UW8cDS9qnvBGpEqYKkbBNUfQ/SwFHpnCmCQK5GiBTThHHP0PQT28g9Fj/Q2YpuOkDAIhctct6Idb1FaSorgk8ih3GRK2weNU8J6HS+GJnUdnK6F1nVqNZSAe3Pi04H/DFh0Voww6+LM13Lck4y9bjWqZ5AgF5Q+XHWK6laPVi0KgTCsS3Ea6Q5PEJd3+0EotCMNxBBN6vrxp0xN8FRcW6NI6XC4sZJ8sjRPvhKmQK3zZQPhd8v0Sr5tJynsTCHmdGGeTZmKRxKOPOnCWwuHQN7ulYYuFEtfMJn6XEES9y3o70GsuyQResXw7kVuix5liOyhAlpUKClzH9rFqo5jO+Hdm4iHRforq3vKLcnON0FUhv6bz0=
   bucket: zyghost.com
-  region: us-west-1
-  skip_cleanup: true
   local-dir: build
   acl: public_read
+  region: us-west-1
+  skip_cleanup: true
   on:
     repo: schell/zyghost-com
