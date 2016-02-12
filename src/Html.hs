@@ -10,6 +10,7 @@ import qualified Data.Text as T
 import Data.Text (Text) 
 import Data.Yaml
 import Data.Aeson.Types
+import Data.List (intercalate, nub)
 import Text.Blaze.Renderer.Utf8
 import Control.Monad
 import Text.Pandoc
@@ -28,8 +29,7 @@ toLink = T.pack . ('/':) . unPostUrl
 newtype PostList = PostList [Post]
 
 articlesCommit :: PostList -> String
-articlesCommit (PostList (post:_)) = postCommit post
-articlesCommit _ = ":)"
+articlesCommit (PostList ps) = intercalate ", " $ nub $ map postCommit ps
 
 articleListHtml :: Monad m => PostList -> HtmlT m ()
 articleListHtml (PostList posts) = ul_ $ forM_ posts $ \post -> 

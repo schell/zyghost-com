@@ -8,6 +8,7 @@ import Development.Shake.FilePath
 import Data.Function (on)
 import Data.List (sortBy, nub)
 import Data.Yaml
+import Data.Char (toLower)
 import qualified Data.ByteString.Char8 as B
 import qualified Data.Set as S
 import Control.Monad
@@ -70,7 +71,7 @@ downloads :: FilePath
 downloads = "build" </> "downloads"
 
 seriesSlug :: Post -> String
-seriesSlug = map f . postTitle
+seriesSlug = map (toLower . f) . postTitle
     where f ' ' = '-'
           f c = c
 
@@ -92,7 +93,7 @@ getSeriesIndexPost getPost series = do
     cmd "unzip -u" seriesLocation seriesNdxPath "-d" downloads :: Action CmdLine
     post <- getPost seriesNdxOut
 
-    return $ post{postUrl = PostUrl $ seriesDir post </> "index.html"
+    return $ post{postUrl = PostUrl $ seriesDir post
                  ,postCommit = articleLocation $ seriesIndex series
                  }
 
@@ -107,10 +108,10 @@ getSeriesPosts getPost getSeries = do
         forM (seriesArticles series) $ \(Article loc file) -> do
             let local = articleLocationToLocal loc
                 temp = downloads </> file
-                slug = dropExtension $ takeFileName file 
+                slug = map toLower $ dropExtension $ takeFileName file 
             cmd "unzip -u" local file "-d" downloads :: Action CmdLine
             post <- getPost temp
-            return post{postUrl = PostUrl $ seriesDir index </> slug </> "index.html"
+            return post{postUrl = PostUrl $ seriesDir index </> slug
                        ,postCommit = articleLocation $ seriesIndex series
                        ,postSeriesIndex = Just index
                        }
@@ -228,7 +229,7 @@ main = newManager tlsManagerSettings >>= \mngr -> milkShake $ do
         mapM_ (need . seriesLocationsToLocal) serieses 
         posts <- mapM (getSeriesIndexPost getPost) serieses
         -- Need the series indexes
-        let indexes = map (("build" </>) . unPostUrl . postUrl) posts
+        let indexes = map (("build" </>) . (</> "index.html") . unPostUrl . postUrl) posts
         liftIO $ print indexes
         need indexes
         liftIO $ renderToFile out $ seriesPage $ PostList posts
@@ -248,7 +249,7 @@ main = newManager tlsManagerSettings >>= \mngr -> milkShake $ do
             [] -> error $ unwords ["Series", slug, "has no posts."] 
             posts -> return $ map snd posts
 
-        let indexes = map (("build" </>) . unPostUrl . postUrl) posts
+        let indexes = map (("build" </>) . (</> "index.html") . unPostUrl . postUrl) posts
         need indexes
 
         indexes <- mapM (getSeriesIndexPost getPost) serieses
@@ -265,7 +266,7 @@ main = newManager tlsManagerSettings >>= \mngr -> milkShake $ do
     "build" </> "series" </> "*" </> "*" </> "index.html" *> \out -> do
         let seriesSlug = splitDirectories out !! 2
             articleSlug = splitDirectories out !! 3 
-            url = PostUrl $ "series" </> seriesSlug </> articleSlug </> "index.html"
+            url = PostUrl $ "series" </> seriesSlug </> articleSlug
         posts <- getSeriesPosts getPost getSeries
         case filter ((== url) . postUrl) posts of
             [] -> error $ unwords ["Could not find post",show url]
