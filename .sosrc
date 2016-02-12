@@ -10,6 +10,7 @@
   - \.cabal$ 
   - .*\.hs$
   - ^css/.*\.css$
+  - .*\.yaml$
   commands:
   - stack exec zyghost-com clean
   - stack exec zyghost-com build

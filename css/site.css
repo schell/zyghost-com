@@ -24,6 +24,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .article-link {
     font-size: 110%;
 }
+.series-link {
+    font-size: 110%;
+    color: #33B7A7;
+}
+.series-link:hover {
+    color: #22887B;
+}
 .article-date {
     color: grey; 
 }
