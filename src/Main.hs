@@ -93,9 +93,7 @@ getSeriesIndexPost getPost series = do
     cmd "unzip -u" seriesLocation seriesNdxPath "-d" downloads :: Action CmdLine
     post <- getPost seriesNdxOut
 
-    return $ post{postUrl = PostUrl $ seriesDir post
-                 ,postCommit = articleLocation $ seriesIndex series
-                 }
+    return $ post{postUrl = PostUrl $ seriesDir post }
 
 getSeriesPosts :: (FilePath -> Action Post) 
                -> (() -> Action [Series]) 
@@ -111,8 +109,7 @@ getSeriesPosts getPost getSeries = do
                 slug = map toLower $ dropExtension $ takeFileName file 
             cmd "unzip -u" local file "-d" downloads :: Action CmdLine
             post <- getPost temp
-            return post{postUrl = PostUrl $ seriesDir index </> slug
-                       ,postCommit = articleLocation $ seriesIndex series
+            return post{postUrl = PostUrl $ seriesDir index </> slug 
                        ,postSeriesIndex = Just index
                        }
     return $ concat posts

@@ -38,10 +38,9 @@ articleListHtml (PostList posts) = ul_ $ forM_ posts $ \post ->
             div_ [class_ "col-md-6"] $ do
                 case postSeriesIndex post of
                     Nothing -> return ()
-                    Just series -> do a_ [ class_ "series-link"
-                                         , href_ (toLink $ postUrl series)
-                                         ] $ toHtml $ postTitle series 
-                                      " - "
+                    Just series -> a_ [ class_ "series-link"
+                                      , href_ (toLink $ postUrl series)
+                                      ] $ toHtml $ postTitle series 
 
                 a_ [class_ "article-link", href_ (toLink $ postUrl post)] $ 
                     toHtml $ postTitle post

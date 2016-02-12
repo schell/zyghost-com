@@ -25,11 +25,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-size: 110%;
 }
 .series-link {
-    font-size: 110%;
-    color: #33B7A7;
+    margin-right:1em;
+    padding: 2px 4px;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
 }
 .series-link:hover {
-    color: #22887B;
+    color: #801933;
 }
 .article-date {
     color: grey; 
