@@ -4,3 +4,5 @@
   articles: 
   - location: https://github.com/schell/odin/archive/master.zip
     file: odin-master/src/Part-One.lhs
+  - location: https://github.com/schell/odin/archive/master.zip
+    file: odin-master/src/Part-One-SDL2.lhs
