@@ -7,7 +7,7 @@ import Data.Time.Clock
 import Data.Maybe (isJust)
 import qualified Data.Set as S
 import qualified Data.Text as T
-import Data.Text (Text) 
+import Data.Text (Text)
 import Data.Yaml
 import Data.Aeson.Types
 import Data.List (intercalate, nub)
@@ -32,7 +32,7 @@ articlesCommit :: PostList -> String
 articlesCommit (PostList ps) = intercalate ", " $ nub $ map postCommit ps
 
 articleListHtml :: Monad m => PostList -> HtmlT m ()
-articleListHtml (PostList posts) = ul_ $ forM_ posts $ \post -> 
+articleListHtml (PostList posts) = ul_ $ forM_ posts $ \post ->
     div_ [class_ "article"] $ do
         div_ [class_ "row"] $ do
             div_ [class_ "col-md-6"] $ do
@@ -40,13 +40,13 @@ articleListHtml (PostList posts) = ul_ $ forM_ posts $ \post ->
                     Nothing -> return ()
                     Just series -> a_ [ class_ "series-link"
                                       , href_ (toLink $ postUrl series)
-                                      ] $ toHtml $ postTitle series 
+                                      ] $ toHtml $ postTitle series
 
-                a_ [class_ "article-link", href_ (toLink $ postUrl post)] $ 
+                a_ [class_ "article-link", href_ (toLink $ postUrl post)] $
                     toHtml $ postTitle post
             div_ [class_ "article-date col-md-6"] $ toHtml $ postDate post
         div_ [class_ "row"] $
-            div_ [class_ "article-desc col-md-12"] $ 
+            div_ [class_ "article-desc col-md-12"] $
                 toHtml $ postDescription post
 
 instance ToHtml UTCTime where
@@ -54,11 +54,11 @@ instance ToHtml UTCTime where
     toHtmlRaw = toHtml
 
 instance ToHtml PostList where
-    toHtml = articleListHtml 
+    toHtml = articleListHtml
     toHtmlRaw = toHtml
 
 articlesPage :: Monad m => PostList -> HtmlT m ()
-articlesPage list = pageHtml "Articles" (toHtml list) $ articlesCommit list 
+articlesPage list = pageHtml "Articles" (toHtml list) $ articlesCommit list
 
 seriesPage :: Monad m => PostList -> HtmlT m ()
 seriesPage list = pageHtml "Series" (toHtml list) $ articlesCommit list
@@ -75,8 +75,8 @@ data Article = Article { articleLocation :: String
                        } deriving (Show)
 
 instance FromJSON Article where
-    parseJSON (Object v) = Article <$> v .: "location" 
-                                   <*> v .: "file"      
+    parseJSON (Object v) = Article <$> v .: "location"
+                                   <*> v .: "file"
     parseJSON invalid = typeMismatch "Article" invalid
 
 data Series = Series { seriesIndex :: Article
@@ -97,24 +97,24 @@ data Post = Post { postUrl :: PostUrl
                  } deriving (Show)
 
 instance ToHtml Post where
-    toHtml p@(Post _ pandoc commit series) = pageHtml (postTitle p) 
-                                                      (f series) 
+    toHtml p@(Post _ pandoc commit series) = pageHtml (postTitle p)
+                                                      (f series)
                                                       commit
         where f Nothing = toHtml pandoc
               f (Just post) = do postBlurbHtml post
                                  toHtml pandoc
-                                          
+
     toHtmlRaw = toHtml
 
 postBlurbHtml :: Monad m => Post -> HtmlT m ()
 postBlurbHtml p =
     blockquote_ [class_ "callout"] $ do
-        "This post is part of a series called "
+        "This post is part of the "
         a_ [href_ (toLink $ postUrl p)] $ toHtml $ postTitle p
-        "."
+        " series."
 
 postMetaString :: String -> Post -> String
-postMetaString str post = f $ lookupMeta str meta 
+postMetaString str post = f $ lookupMeta str meta
     where (Pandoc meta _) = postBody post
           f (Just v) = stringify v
           f _ = ""
@@ -123,7 +123,7 @@ postTitle :: Post -> String
 postTitle = postMetaString "title"
 
 postDescription :: Post -> String
-postDescription = postMetaString "description" 
+postDescription = postMetaString "description"
 
 postDate :: Post -> String
 postDate = postMetaString "date"
@@ -131,7 +131,7 @@ postDate = postMetaString "date"
 -- Page Html
 --------------------------------------------------------------------------------
 pageHtml :: Monad m => String -> HtmlT m () -> String -> HtmlT m ()
-pageHtml title body commit = doctypehtml_ $ do 
+pageHtml title body commit = doctypehtml_ $ do
     head_ $ do
         title_ $ toHtml title
         meta_ [charset_ "utf-8"]
@@ -157,20 +157,20 @@ pageHtml title body commit = doctypehtml_ $ do
                 h1_ $ toHtml title
 
           div_ [class_ "row"] $
-            div_ [class_ "content col-md-12"] body 
+            div_ [class_ "content col-md-12"] body
 
           div_ [class_ "row footer"] $
             div_ [class_ "content col-md-12"] $
               span_ [class_ "commit"] $
-                toHtml commit 
-        script_ $ T.concat 
+                toHtml commit
+        script_ $ T.concat
           [ "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){"
           , "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),"
           , "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)"
           , "})(window,document,'script','//www.google-analytics.com/analytics.js','ga');"
           , "ga('create', 'UA-47072737-1', 'auto');"
           , "ga('send', 'pageview');"
-          ] 
+          ]
 --------------------------------------------------------------------------------
 -- Pandoc
 --------------------------------------------------------------------------------
@@ -178,15 +178,15 @@ myPandocExtensions :: S.Set Extension
 myPandocExtensions = S.fromList [ Ext_literate_haskell
                                 , Ext_link_attributes
                                 , Ext_mmd_link_attributes
-                                ]  
+                                ]
 
 pandocHtml :: Monad m => Pandoc -> HtmlT m ()
 pandocHtml pandoc@(Pandoc meta _) = HtmlT $ do
     let hasTOC = isJust $ lookupMeta "has-toc" meta
-        blazehtml = writeHtml opts pandoc 
+        blazehtml = writeHtml opts pandoc
         opts = if hasTOC then optsTOC else optsPlain
-        optsPlain = def{ writerExtensions = S.union myPandocExtensions $ 
-                            writerExtensions def  
+        optsPlain = def{ writerExtensions = S.union myPandocExtensions $
+                            writerExtensions def
                        , writerHighlight = True
                        , writerHtml5 = True
                        }
