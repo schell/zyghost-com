@@ -1,10 +1,10 @@
-- article: 
+- article:
     location: https://github.com/schell/odin/archive/master.zip
     file: odin-master/README.md
-  articles: 
+  articles:
   - location: https://github.com/schell/odin/archive/master.zip
-    file: odin-master/src/app/Part-One.lhs
+    file: odin-master/app/Part-One.lhs
   - location: https://github.com/schell/odin/archive/master.zip
-    file: odin-master/src/app/Part-One-SDL2.lhs
+    file: odin-master/app/Part-One-SDL2.lhs
   - location: https://github.com/schell/odin/archive/master.zip
-    file: odin-master/src/app/Part-Two.lhs
+    file: odin-master/app/Part-Two.lhs
