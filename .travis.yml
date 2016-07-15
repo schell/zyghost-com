@@ -15,7 +15,9 @@ script:
 - stack exec zyghost-com build
 cache:
   directories:
-  - "$HOME/.stack"
+  - $HOME/.ghc
+  - $HOME/.cabal
+  - $HOME/.stack
 deploy:
   provider: s3
   access_key_id: AKIAJOPJPECIU2VKXQIA
