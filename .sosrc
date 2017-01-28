@@ -1,16 +1,6 @@
 - patterns: 
-  - \.cabal$
-  - .*\.hs$
-  commands:
-  - stack build
-  - hlint \0
-- patterns: 
-  - ^templates/.*\.html$
-  - articles/.*\.(md|lhs)$
-  - \.cabal$ 
-  - .*\.hs$
-  - ^css/.*\.css$
+  - ^content/.*
+  - ^css/.*
   - .*\.yaml$
   commands:
-  - stack exec zyghost-com clean
-  - stack exec zyghost-com build
+  - milkshake -c sitemap.yaml

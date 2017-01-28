@@ -1,8 +1,9 @@
 ---
-title: Rendering text in Haskell using Freetype2 and OpenGL 
+title: Rendering text in Haskell using Freetype2 and OpenGL
 date: 2014-08-01
 description: A first attempt at rendering text
-has-toc: yes
+toc-title: Table of Contents
+theme: templates/default.html
 ---
 
 Intro

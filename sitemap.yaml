@@ -1,0 +1,66 @@
+dirName: root
+dirFiles:
+- pageOp: PageOpPandoc
+  pageMeta: {}
+  pageName: index.html
+  pageSourcePath:
+    localPath: content/index.md
+- pageOp: PageOpPandoc
+  pageMeta: {}
+  pageName: 404.html
+  pageSourcePath:
+    localPath: content/404.md
+dirSubdirs:
+- dirName: articles
+  dirFiles:
+  - pageOp: PageOpPandoc
+    pageMeta: {}
+    pageName: index.html
+    pageSourcePath:
+      localPath: content/articles/index.md
+  - pageOp: PageOpPandoc
+    pageMeta: {}
+    pageName: Haskell-font-rendering-with-freetype2-and-opengl.html
+    pageSourcePath:
+      localPath: content/articles/Haskell-font-rendering-with-freetype2-and-opengl.md
+  - pageOp: PageOpPandoc
+    pageMeta: {}
+    pageName: My-Keyboard.html
+    pageSourcePath:
+      localPath: content/articles/My-Keyboard.md
+  - pageOp: PageOpPandoc
+    pageMeta: {}
+    pageName: Renderable.html
+    pageSourcePath:
+      localPath: content/articles/Renderable.md
+  - pageOp: PageOpPandoc
+    pageMeta: {}
+    pageName: stackage-release-0.html
+    pageSourcePath:
+      localPath: content/articles/stackage-release-0.md
+  dirSubdirs: []
+- dirName: series
+  dirFiles: []
+  dirSubdirs:
+  - dirName: odin
+    dirSubdirs: []
+    dirFiles:
+    - pageOp: PageOpPandoc
+      pageMeta:
+        theme: templates/default.html
+        toc-title: Table of Contents
+      pageName: Part-One.html
+      pageSourcePath:
+        remotePath: https://raw.githubusercontent.com/schell/odin/master/app/Part-One.lhs
+    - pageOp: PageOpPandoc
+      pageMeta: {}
+      pageName: Part-One-SDL2.html
+      pageSourcePath:
+        remotePath: https://raw.githubusercontent.com/schell/odin/master/app/Part-One-SDL2.lhs
+    - pageOp: PageOpPandoc
+      pageMeta: {}
+      pageName: Part-Three.html
+      pageSourcePath:
+        remotePath: https://raw.githubusercontent.com/schell/odin/master/app/Part-Two.lhs
+- dirCopiedFrom: css
+- dirCopiedFrom: img
