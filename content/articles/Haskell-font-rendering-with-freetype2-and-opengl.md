@@ -27,12 +27,12 @@ Helpers
 -------
 Here we have some convenience functions. The first unboxes an IO FT_Error and fails if the FT_Error is non zero.
 
-```haskell
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.haskell}
 runFreeType :: IO FT_Error -> IO ()
 runFreeType m = do
     r <- m
     unless (r == 0) $ fail $ "FreeType Error:" ++ show r
-```
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This code is simple enough. It arises from having to check almost every freetype operation for an error. None the less, I borrowed it from a package on hackage I found by checking the [reverse package dependencies](http://packdeps.haskellers.com/reverse) on the freetype2 bindings and looking at the source of the [defunct free-game package](http://hackage.haskell.org/package/free-game-0.9.4.3/docs/src/Graphics-UI-FreeGame-Data-Font.html#freeType). This is one of the things that I love about Haskell. There are lots of high quality tools, resources and people to help you find the answers you need.
 

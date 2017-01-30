@@ -37,21 +37,31 @@
       </div>
       <div class="row">
           <div class="content col-md-12">
-            $if(toc-title)$
-              $toc-title$
-              $toc$
-            $else$
-              $if(has-toc)$
-                $toc$
-              $endif$
-            $endif$
+$if(toc-title)$
+$toc-title$
+$toc$
+$else$
+$if(has-toc)$
+$toc$
+$endif$
+$endif$
 
-            $body$
+$body$
           </div>
       </div>
       <div class="row footer">
         <div class="content col-md-12">
-          <span class="commit">:)</span>
+          <a href="https://github.com/schell" class="social">
+            <i class="fa fa-github"></i>
+          </a>
+          <a href="https://twitter.com/schellsan" class="social">
+            <i class="fa fa-twitter"></i>
+          </a>
+          <a href="https://instagram.com/schellsan/" class="social">
+            <i class="fa fa-instagram"></i></a>
+          <a href="https://www.facebook.com/likeaseashell" class="social">
+            <i class="fa fa-facebook"></i>
+          </a>
         </div>
       </div>
     </div>

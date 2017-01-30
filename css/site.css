@@ -5,6 +5,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-size: smaller;
   font-style: italic;
 }
+hr {
+    border-top: 1px dashed #eee;
+}
 .page-header {
     margin-top: 0px;
 }

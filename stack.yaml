@@ -1,9 +1,9 @@
 flags: {}
 packages:
-- '.'
+- .
 - location:
     git: https://github.com/schell/milkshake.git
-    commit: d29a018c30a9908a1073d94d877d04aa11d86582
+    commit: 1e85aab5c37628b158d16280c24f27aafd8e97d1
   extra-dep: true
 
-resolver: lts-6.15
+resolver: lts-7.14
