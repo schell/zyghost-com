@@ -1,5 +1,9 @@
 dirName: root
 dirFiles:
+- pageName: favicon.ico
+  pageOp: PageOpCopy
+  pageSourcePath: 
+    localPath: img/freebattery.ico
 - pageName: index.html
   pageSourcePath:
     localPath: content/index.md
