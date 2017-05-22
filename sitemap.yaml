@@ -1,44 +1,9 @@
-dirName: root
-dirFiles:
-- pageName: favicon.ico
-  pageOp: PageOpCopy
-  pageSourcePath: 
-    localPath: img/freebattery.ico
-- pageName: index.html
-  pageSourcePath:
-    localPath: content/index.md
-- pageName: 404.html
-  pageSourcePath:
-    localPath: content/404.md
+dirName: build
 dirSubdirs:
-- dirName: articles
-  dirFiles:
-  - pageName: index.html
-    pageSourcePath:
-      localPath: content/articles/index.md
-  - pageName: Haskell-font-rendering-with-freetype2-and-opengl.html
-    pageSourcePath:
-      localPath: content/articles/Haskell-font-rendering-with-freetype2-and-opengl.md
-  - pageName: My-Keyboard.html
-    pageSourcePath:
-      localPath: content/articles/My-Keyboard.md
-  - pageName: Renderable.html
-    pageSourcePath:
-      localPath: content/articles/Renderable.md
-  - pageName: stackage-release-0.html
-    pageSourcePath:
-      localPath: content/articles/stackage-release-0.md
-- dirName: series
-  dirFiles:
-  - pageName: index.html
-    pageSourcePath:
-      localPath: content/series/index.md
+# SERIES SECTION
+- dirName: site/series
   dirSubdirs:
   - dirName: odin
-    dirFiles:
-    - pageName: index.html
-      pageSourcePath:
-        localPath: content/series/odin/index.md
     dirSubdirs:
     - dirName: part-one
       dirFiles:
@@ -64,5 +29,10 @@ dirSubdirs:
         pageName: index.html
         pageSourcePath:
           remotePath: https://raw.githubusercontent.com/schell/odin/master/app/Part-Two.lhs
-- dirCopiedFrom: css
-- dirCopiedFrom: img
+# ALL LOCAL CONTENT
+- dirCopiedFrom: site
+  dirOpMap:
+  - operationExtFrom: md
+    operationExtTo: html
+    operationPageOp: PageOpPandoc
+  dirExcludes: [.DS_Store]
