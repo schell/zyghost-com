@@ -17,6 +17,8 @@ you click or release your mouse :)
 Thanks to Ryan Trinkle for helping me brainstorm and letting me bug him about types at
 odd hours of the night.
 
+[r/haskell comments](https://www.reddit.com/r/haskell/comments/6v6uyj/reflexsdl2_a_minimal_reflex_frp_host_for_sdl2_apps/)
+
 [0]: http://hackage.haskell.org/package/reflex "reflex frp"
 [1]: http://hackage.haskell.org/package/sdl2 "simple direct media layer - part deux"
 [2]: http://hackage.haskell.org/package/reflex-sdl2 "sdl2 reflex host"
