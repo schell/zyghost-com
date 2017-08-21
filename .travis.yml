@@ -17,6 +17,7 @@ cache:
   - $HOME/.ghc
   - $HOME/.cabal
   - $HOME/.stack
+  - ./.stack-work
 deploy:
   provider: s3
   access_key_id: AKIAJOPJPECIU2VKXQIA
