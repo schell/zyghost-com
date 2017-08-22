@@ -10,7 +10,7 @@ applications. I expected the task to be much harder - a testament to the two lib
 authors! So - standing on the shoulders of giants is a new barebones package for starting
 game and multimedia projects (in Haskell) called [reflex-sdl2][2].
 
-The hackage docs contain a link to a [small tutorial][3] that compiles into a desktop app. If
+The hackage docs contain a link to a [small sample][3] that compiles into a desktop app. If
 everything works, you should see some 1980's stlye neon colored squares appear whenever
 you click or release your mouse :)
 
