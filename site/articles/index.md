@@ -11,6 +11,9 @@ A few articles on casually writing a roguelike game.
 
 Articles
 --------
+#### [Reflex SDL2](reflex-sdl2)
+<date>2017/08/21</date>
+A reflex host for Haskell SDL applications.
 
 #### [Better Renderable Types](Renderable.html)
 <date>2015/10/03</date>
