@@ -63,8 +63,8 @@ data Planet = Planet { planetMass     :: Float
                      , planetPosition :: V2 Float -- don't be afraid, this is just a vector like (Float, Float)
                      }
 
-planetA = Planet 10 (0,0)
-planetB = Planet 100 (250, 250)
+planetA = Planet 10 $ V2 0 0
+planetB = Planet 100 $ V2 250 250
 ```
 
 POOF! Planetary formation. Now we need to know how these planets change over time. Oooor we can assume they don't. 
@@ -85,9 +85,13 @@ planetBehaviorB = pure planetB
 These planet's don't change over time. These rocks just sit. Which reminds me of a poem:
 
 > Nobody sits like this rock sits.
+>
 > You rock, rock.
+>
 > The rock just sits - and is.
+>
 > You show us how to just sit here
+>
 > And that's what we need.
 
 Now that we have what we need (a couple of sitty rocks) we can write the other `Behaviors` we need, using
