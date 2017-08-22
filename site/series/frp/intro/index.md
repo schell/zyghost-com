@@ -84,8 +84,7 @@ planetBehaviorB = pure planetB
 
 These planet's don't change over time. These rocks just sit. Which reminds me of a poem:
 
-> Nobody sits like this rock sits.
->
+> Nobody sits like this rock sits.  
 > You rock, rock.  
 > The rock just sits - and is.  
 > You show us how to just sit here  
