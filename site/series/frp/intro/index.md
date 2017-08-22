@@ -1,6 +1,7 @@
 ---
 title: A gentle introduction to FRP
 theme: templates/default.html
+toc-title: Table of Ingredients
 ---
 
 ## Discovery
