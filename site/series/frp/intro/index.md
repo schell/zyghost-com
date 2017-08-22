@@ -86,13 +86,11 @@ These planet's don't change over time. These rocks just sit. Which reminds me of
 
 > Nobody sits like this rock sits.
 >
-> You rock, rock.
->
-> The rock just sits - and is.
->
-> You show us how to just sit here
->
-> And that's what we need.
+> You rock, rock.  
+> The rock just sits - and is.  
+> You show us how to just sit here  
+> And that's what we need.  
+> -- [Albert Markovski](https://www.youtube.com/watch?v=_i8-t5biK10)
 
 Now that we have what we need (a couple of sitty rocks) we can write the other `Behaviors` we need, using
 `Functor` to great lengths and masses.
