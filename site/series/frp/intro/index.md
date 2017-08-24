@@ -49,6 +49,7 @@ between two bodies of mass `m1` and `m2` respectively, `g` is a gravitational co
 `r` is the distance between the centers of the two bodies. In a `Behavior`al context we can express this equation
 quite simply and quite literally by saying that if each term (`g`, `m1`, `m2` and `r`) are `Behavior`s themselves,
 then `f` is also a `Behavior`. Even better, if the FRP lib you choose defines [Num](http://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#t:Num) and [Fractional](http://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#t:Fractional) instances for its `Behavior` type then we can define `f` as the equation itself:
+
 ```haskell
 f g m1 m2 r = g * (m1 * m2) / r ** 2
 ```
