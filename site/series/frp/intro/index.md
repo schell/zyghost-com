@@ -36,6 +36,7 @@ typeclasses:
 and if you've got the time it would really help to get these bad boys in as well -
 
 * [MonadFix](https://wiki.haskell.org/Typeclassopedia#MonadFix)
+  - More on that here: [MonadFix is Time Travel](http://elvishjerricco.github.io/2017/08/22/monadfix-is-time-travel.html)
 * [Arrow](https://wiki.haskell.org/Typeclassopedia#Arrow) (but don't get too carried away with Arrows, lol)
 
 [The haskell wiki has more info on how FRP libs use these typeclasses.](https://wiki.haskell.org/Functional_Reactive_Programming)
