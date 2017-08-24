@@ -41,8 +41,11 @@ and if you've got the time it would really help to get these bad boys in as well
 
 [The haskell wiki has more info on how FRP libs use these typeclasses.](https://wiki.haskell.org/Functional_Reactive_Programming)
 
-Now that you have a grasp on the supporting machinery we can talk a bit about `Behavior`s and `Event`s. I
-find it beneficial to think of a `Behavior` as a function - like a mathematical function from your last 
+Then once you have a grasp on the supporting machinery we can talk a bit about `Behavior`s and `Event`s. 
+
+## Behaviors
+
+I find it beneficial to think of a `Behavior` as a function - like a mathematical function from your last 
 physics class. Have you taken a physics class? No worries! This is just algebra! 
 
 Let's use Newton's law of gravitation, `f = g * (m1 * m2) / r ** 2`, where `f` is the force 
@@ -119,6 +122,10 @@ And that's enough to get us the rest of the way:
 ```haskell
 gForceAB = f massBehaviorA massBehaviorB vectorAB
 ```
+
+## Events
+
+...
 
 ## A tour of FRP flavors
 Evan Czaplicki of Elm fame did a great talk on the different flavors of FRP, and he does a better job describing them
