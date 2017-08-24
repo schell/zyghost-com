@@ -16,7 +16,7 @@ seemingly unrelated technologies like Javascript's React framework. Thankfully w
 etc. they tend to drop the "functional" part of FRP in favor of "reactive", which suits the nature of those frameworks 
 better. [Check out the wikipedia article on FRP for more info on what it is, specifically](https://en.wikipedia.org/wiki/Functional_reactive_programming)
 
-## Major tenets and their requirements
+## Prep Work
 
 An FRP system deals in terms of continuous values and discrete events. Continuous values are often referred to as `Behavior`s
 while discrete events are simply ... you guessed it ... `Event`s! What this means is that your values always come 
