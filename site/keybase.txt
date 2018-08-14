@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/schellsan
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://zyghost.com
+  * I am schellsan (https://keybase.io/schellsan) on keybase.
+  * I have a public key with fingerprint 19AC C373 719B 2FD0 A78C  9195 B26E 748F 892E 858E
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012076cbc6370473fc4d77225681f9c56c2d7f03547c9522720a72cc42279eac00300a",
+      "fingerprint": "19acc373719b2fd0a78c9195b26e748f892e858e",
+      "host": "keybase.io",
+      "key_id": "b26e748f892e858e",
+      "kid": "0101213a1dde13bb0309a18fdbdae6067d0bcf454080d153f1dede752b98c830cfda0a",
+      "uid": "30ce852d9588787960d76536424ef819",
+      "username": "schellsan"
+    },
+    "service": {
+      "hostname": "zyghost.com",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1534278158,
+  "expire_in": 157680000,
+  "prev": "7ccc34755d71a6e24a614e3a05f1dd994cf08c20aaf2852b7be9c0fed08087a2",
+  "seqno": 19,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.77
+Comment: https://keybase.io/crypto
+
+yMNuAnicbVJ7UFRVHF4UeSm6EIvN+CiuTqUB3ve5d2uMdBoNSyhtG0NZ7z333N2F
+ZXfZB0gMATKmJCwkkK1TTWJJQinhI2aYZChtSGIrHiPNaGhKtA5i4IzM8Bg7l9H/
+uv/ce37n+777fd85l2IX6mLC2hzemsrUA/6wnq6jPl2Wx7i0mJCdShFhLCZy0fwL
+2RXk8ZpzbQphJEiKJgEPZcgzgGQBo0JWAYCmOV6gVBFyPKQVoJIMxwIocjQNaFIC
+NIQs/hSRBEmSIUmJSCZUm8OC3C63zeHFspQoQcgABlCiTKsK5ghQpEROpnkEWEEV
+RBoJnIAw0er0aAxsTpY8KNXmxDO8MM/b+x/8Y9/YOcVIlKIgipFlbEOUKEFVZEVC
+PMkDhZShynIsKZAKxTEqpSAFAY6WRQEKDAlVRZr37ZuXwwOsTysiJwhAACJPKoDn
+GJ6lWaQKlKgBPcjtkPIQRnugFdntHslBlCQTeFxgg0hrVovyCPJukUVbpUJnHua6
+3E6vEzrteMPq9bqMGs9b5NKAhUg2P5IwyzaHgmvEhALk9ticDsJIYST02jRNnIKl
+gUBxQjKB9rlsbmS2aQgO8AKJH+03qABLAoi7ZwHHKYCSeESzEk+xiJFIDregiCIL
+VVKA+CAllcahZSAjEZIqUnBXApBoQguV73BibRH7lCxaZJvFIXl9bkSU/NC1O1wX
+FqOLWLRAu1+6mGj941v3Se+ymfDEssykXWlZRYwuvj3no9t9ixMrrG9uafKb1rwT
+tc+cn12YtDitI+novY4fJyj+m+bc3p6o/hTLM4U1A8cukAnnW311Ha+qk4aG8pMl
+gZ6Bb48NJdfnwOqdUQOFF4IvrL218tOcZrDn8pMTVx50roid3W2Jn6qLuxqqaRg6
+de7X0Oz5/ezTJw6W9x8uHus3VLxtmBmYS1gxEJtdfeMVc23Gh5Ujps362RTvcfLc
+yBuT7shLjdv57Iv+J4a3ZbeE1mUGkiNODOYOpX/ddUYXxRv1H/jvvjbdsnooemX7
+NntAmjQ9V6sLHbxeV7VIzZ8ezdneVfdb4GpDX+/7q+zsPxMRraPFeeXrL4/tKlVX
+h/3JX0vbEb956Xrxi+XTVCT1U3Dm+WpmckPl7b9bbAnHHw63HbHWZ92cUwyJ72Wu
+cYx7DqujI+HIlIA8B8euVb1+uuJsd98fXM3W2S3dM+2NNw+sGtwQ0Tgx8eLysv17
+izbWLwl9vPGU70sxON7OfBYVeulKcGguWs1oqRC+v7tzLOuB/9DwpntNVfdrzhja
+rv+bscQ0/VRCWete18JxovSI6ee4lwMpQX3z2rNJ+uDJt7r5Pe33a/2eTV9Zbwz+
+suBhE8pj0+NzO8ecp1v/2poe523QR07dCbpKpzq9jvDPUzLS6FuCgXePBdZdvPNs
+verwLRNC3+1o+T3/PyAuwSA=
+=Cc/3
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/schellsan
+
+==================================================================
