@@ -8,7 +8,7 @@ theme: templates/default.html
 ## Recent update:
 I've picked this project back up and am working on new designs. 
 You can follow along by signing up for the mailing list at [electrunique.com](http://electrunique.com)
-and by following my project's instagram account [@electrunique](https://www.instagram.com/electrunique/).
+and by following my project's instagram account [electrunique](https://www.instagram.com/electrunique/).
 
 Happy hacking!
 
