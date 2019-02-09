@@ -5,6 +5,15 @@ description: The beginning of a pipe dream to replicate my datahand keyboard.
 theme: templates/default.html
 ---
 
+## Recent update:
+I've picked this project back up and am working on new designs. 
+You can follow along by signing up for the mailing list at [electrunique.com](http://electrunique.com)
+and by following my project's instagram account [@electrunique](https://www.instagram.com/electrunique/).
+
+Happy hacking!
+
+## Original article:
+
 I use a [Datahand keyboard](https://en.wikipedia.org/wiki/DataHand).
 It\'s the best thing that\'s happened to my fingers and wrists since\...
 It\'s the best thing that has ever happened to my fingers and wrists.
