@@ -1,0 +1,20 @@
+---
+title: Contact
+theme: templates/default.html
+---
+
+I primarily talk through the sites listed at my [keybase](https://keybase.io/schellsan).
+
+You can see links to the social media sites that I sometimes use in the ^header above.
+
+Around the web I'm found with the handles `schell`, `schellsan` and `efnx`.
+
+You can also reach me at:
+
+  * `efsubenovex` `gmail` `com`
+
+  * `schell` `formation` `ai`
+
+  * `schell` `takt` `com`
+
+  * `schell` `electrunique` `com`

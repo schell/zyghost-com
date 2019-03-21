@@ -6,6 +6,9 @@ theme: templates/default.html
 Series
 ------
 
+#### [FRP](/series/frp){.series-link}
+An ongoing series on functional reactive programming.
+
 #### [Odin](/series/odin){.series-link}
 A few articles on casually writing a roguelike game.
 

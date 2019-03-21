@@ -8,3 +8,5 @@ dist/
 .stack-work
 build/
 root
+dist-newstyle
+*.cabal

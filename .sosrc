@@ -1,6 +1,10 @@
-- patterns: 
-  - ^content/.*
-  - ^css/.*
+- patterns:
+  - .*\.md$
+  - .*\.html$
+  - .*\.css$
   - .*\.yaml$
+  excludes:
+  - \#
+  - ^build/
   commands:
-  - milkshake -c sitemap.yaml
+  - stack exec milkshake-cli -- -c sitemap.yaml
