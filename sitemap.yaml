@@ -7,28 +7,42 @@ dirSubdirs:
     dirSubdirs:
     - dirName: part-one
       dirFiles:
-      - pageMeta:
+      - pageName: index.html
+        pageMeta:
           theme: templates/default.html
           toc-title: Table of Contents
-        pageName: index.html
+        pageDerivation:
+        - wget https://raw.githubusercontent.com/schell/odin/master/app/Part-One.lhs
+        - mv Part-One.lhs build/site/series/odin/part-one/
         pageSourcePath:
-          remotePath: https://raw.githubusercontent.com/schell/odin/master/app/Part-One.lhs
+          localPath: build/site/series/odin/part-one/Part-One.lhs
     - dirName: part-one-sdl2
       dirFiles:
-      - pageMeta:
+      - pageName: index.html
+        pageMeta:
           theme: templates/default.html
           toc-title: Table of Contents
-        pageName: index.html
+        pageDerivation:
+        - wget https://raw.githubusercontent.com/schell/odin/master/app/Part-One-SDL2.lhs
+        - mv Part-One-SDL2.lhs build/site/series/odin/part-one-sdl2/
         pageSourcePath:
-          remotePath: https://raw.githubusercontent.com/schell/odin/master/app/Part-One-SDL2.lhs
+          localPath: build/site/series/odin/part-one-sdl2/Part-One-SDL2.lhs
     - dirName: part-two
       dirFiles:
-      - pageMeta:
+      - pageName: index.html
+        pageMeta:
           theme: templates/default.html
           toc-title: Table of Contents
-        pageName: index.html
+        pageDerivation:
+        - wget https://raw.githubusercontent.com/schell/odin/master/app/Part-Two.lhs
+        - mv Part-Two.lhs build/site/series/odin/part-two/
         pageSourcePath:
-          remotePath: https://raw.githubusercontent.com/schell/odin/master/app/Part-Two.lhs
+          localPath: build/site/series/odin/part-two/Part-Two.lhs
+# GUIDES SECTION
+- dirName: site/guides
+  dirSubdirs:
+  - dirCopiedFrom:
+      externalZippedDir: https://zyghost-guides.s3-us-west-2.amazonaws.com/intro-to-rust-web.zip
 # ALL LOCAL CONTENT
 - dirCopiedFrom: site
   dirOpMap:

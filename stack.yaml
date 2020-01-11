@@ -1,5 +1,5 @@
 resolver: lts-13.9
 extra-deps:
 - git: https://github.com/schell/milkshake.git
-  commit: ff3f17998e7281dc013ff3cad75bdc4d03518e52
+  commit: 76eb83deb7e14284e0bdcd3511a2c7900cb7db27
 - pretty-simple-2.0.0.0
