@@ -11,7 +11,7 @@ before_install:
   --strip-components=1 -C ~/.local/bin '*/stack'
 script:
 - stack --no-terminal --install-ghc build --fast --only-dependencies
-- stack install milkshake
+- stack build --only-dependencies
 - stack exec milkshake-cli -- sitemap.yaml -c
 cache:
   directories:
