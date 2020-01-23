@@ -43,10 +43,10 @@ dirSubdirs:
   dirSubdirs:
   - dirCopiedFrom:
       externalCmds:
-      - wget https://zyghost-guides.s3-us-west-2.amazonaws.com/intro-to-rust-web.zip
-      - unzip intro-to-rust-web.zip
+      - wget https://github.com/schell/fe_web_dev_in_rust/releases/download/v0.3/intro-to-rust-web.tar.gz
+      - tar xvf intro-to-rust-web.tar.gz
       - mv intro-to-rust-web build/site/guides/
-      - rm intro-to-rust-web.zip
+      - rm intro-to-rust-web.tar.gz
 # ALL LOCAL CONTENT
 - dirCopiedFrom: site
   dirOpMap:
