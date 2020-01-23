@@ -5,20 +5,6 @@
 
 packages:
 - completed:
-    cabal-file:
-      size: 1803
-      sha256: 1f266a573d8d3b26319391a8f58f7d4dfaa551a0f5f5b35b69ce3e0d71ee230a
-    name: milkshake
-    version: 0.3.0.0
-    git: https://github.com/schell/milkshake.git
-    pantry-tree:
-      size: 1254
-      sha256: 41b0ff3e34e3489eedbb11b170f5e0332ee26c9c6d67b03f29a76cf869d3684f
-    commit: 76eb83deb7e14284e0bdcd3511a2c7900cb7db27
-  original:
-    git: https://github.com/schell/milkshake.git
-    commit: 76eb83deb7e14284e0bdcd3511a2c7900cb7db27
-- completed:
     hackage: pretty-simple-2.0.0.0@sha256:52ff9a58a952c8b8638a610f36a711e8b76ed122625530affb2b51dfb06717a3,3342
     pantry-tree:
       size: 1228
