@@ -42,7 +42,7 @@ dirSubdirs:
 - dirName: site/guides
   dirSubdirs:
   - dirCopiedFrom:
-      externalZippedDir: https://zyghost-guides.s3-us-west-2.amazonaws.com/intro-to-rust-web.zip
+      externalZippedDir: https://github.com/schell/fe_web_dev_in_rust/releases/download/v0.0/intro-to-rust-web.zip
 # ALL LOCAL CONTENT
 - dirCopiedFrom: site
   dirOpMap:
