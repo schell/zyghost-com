@@ -7,18 +7,14 @@ addons:
 before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
-- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards
-  --strip-components=1 -C ~/.local/bin '*/stack'
+- wget https://github.com/schell/milkshake/releases/download/v0.3.0.0/milkshake-cli.tar.gz
+- tar xvf milkshake-cli.tar.gz
+- mv milkshake-cli ~/.local/bin
 script:
-- stack --no-terminal --install-ghc build --fast --only-dependencies
-- stack build --only-dependencies
-- stack exec milkshake-cli -- sitemap.yaml -c
+- milkshake-cli -- sitemap.yaml -c
 cache:
   directories:
-  - $HOME/.ghc
-  - $HOME/.cabal
-  - $HOME/.stack
-  - ./.stack-work
+  - $HOME/.local/bin
 deploy:
   provider: s3
   access_key_id: AKIAJOPJPECIU2VKXQIA
