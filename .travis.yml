@@ -1,9 +1,4 @@
-sudo: false
-language: c
-addons:
-  apt:
-    packages:
-    - libgmp-dev
+dist: bionic
 before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
