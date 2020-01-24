@@ -6,7 +6,7 @@ before_install:
 - tar xvfz milkshake-cli.tar.gz
 - mv milkshake-cli ~/.local/bin
 script:
-- milkshake-cli -- sitemap.yaml -c
+- milkshake-cli sitemap.yaml -c
 cache:
   directories:
   - $HOME/.local/bin
