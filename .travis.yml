@@ -8,7 +8,7 @@ before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
 - wget https://github.com/schell/milkshake/releases/download/v0.3.0.0/milkshake-cli.tar.gz
-- tar xvf milkshake-cli.tar.gz
+- tar xvfz milkshake-cli.tar.gz
 - mv milkshake-cli ~/.local/bin
 script:
 - milkshake-cli -- sitemap.yaml -c
