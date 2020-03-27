@@ -10,6 +10,36 @@ I have a number of ongoing projects that you can investigate, buy, use or
 contribute to :) These are labors of love and engineering - some of them are free
 and some are not. Some of them serve a purpose and some do not!
 
+Apps 
+====
+
+#### [todo-mvc-bench](todo-mvc-bench/)
+A suite for interactively benchmarking various todomvc implementations.
+
+Software
+========
+
+#### [mogwai](https://github.com/schell/mogwai/)
+<date>2019/12/??</date>
+`mogwai` is the *M*inimal *O*bvious *G*raphical *W*eb *A*pplication *I*nterface.
+It's a library for writing frontend web apps in Rust.
+
+#### [steeloverseer](https://github.com/schell/steeloverseer)
+<date>2013/04/29</date>
+A file watcher and development tool, similar to Ruby's Guard.
+
+The main idea is that you have steeloverseer watch your files and then execute a
+series of shell commands in response. The first command to fail short circuits
+the series. The watched files can be selected using regular expressions and the
+commands may include capture groups.
+
+
+#### [varying](https://github.com/schell/varying)
+<date>2015/05/05</date>
+Continuously varying values, made easy :)
+
+An FRP implementation like netwire, but simpler.
+
 
 Services
 ========
@@ -42,33 +72,3 @@ are limited to after hours.
 
 [Contact me](/contact/)!
 
-
-Software
-========
-
-#### [px language](https://github.com/schell/px-lang/)
-<date>2017/??/??</date>
-px is a typed lambda calculus for graphics, sound, web, whatever!
-
-I aim to make the language extensible with domain specific parsers, primitives and
-code generators. The goal is to make `px` be the main ingredient in a bunch of
-little functional languages that help you get `X` done well.
-
-I am actively looking for contributors and maintainers who are interested in helping.
-
-
-#### [steeloverseer](https://github.com/schell/steeloverseer)
-<date>2013/04/29</date>
-A file watcher and development tool, similar to Ruby's Guard.
-
-The main idea is that you have steeloverseer watch your files and then execute a
-series of shell commands in response. The first command to fail short circuits
-the series. The watched files can be selected using regular expressions and the
-commands may include capture groups.
-
-
-#### [varying](https://github.com/schell/varying)
-<date>2015/05/05</date>
-Continuously varying values, made easy :)
-
-An FRP implementation like netwire, but simpler.

@@ -47,6 +47,16 @@ dirSubdirs:
       - tar xvfz intro-to-rust-web.tar.gz
       - mv intro-to-rust-web build/site/guides/
       - rm intro-to-rust-web.tar.gz
+# PROJECT SECTIONS
+  dirName: site/projects
+  dirSubdirs:
+  - dirCopiedFrom:
+      dirDerivation:
+      - wget https://github.com/schell/todo-mvc-bench/releases/download/v0.1.0/release.tar.gz
+      - tar xvfz release.tar.gz
+      - mkdir -p build/site/projects/todo-mvc-bench
+      - mv release/* build/site/projects/todo-mvc-bench
+      - rm release.tar.gz
 # ALL LOCAL CONTENT
 - dirCopiedFrom: site
   dirOpMap:
