@@ -23,11 +23,3 @@ else
     echo "Installing wasm-pack..."
     curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 fi
-
-if hash cargo-generate 2>/dev/null; then
-    echo "Have cargo-generate, skipping installation..."
-else
-    echo "Installing cargo-generate..."
-    cargo install cargo-generate --git https://github.com/schell/cargo-generate.git --rev eafafae56974752176b8f2030a78f800201b0f43
-    which cargo-generate
-fi
