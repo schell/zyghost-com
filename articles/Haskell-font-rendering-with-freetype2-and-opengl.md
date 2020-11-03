@@ -8,7 +8,7 @@ theme: templates/default.html
 
 Intro
 =====
-My last adventure in programming was using Haskell to hook up [freetype2](http://freetype.org/freetype2/) to [OpenGL](https://www.opengl.org/). Freetype is a font rasterization library. The idea is that you use freetype to load a font and render it into an opengl texture, then render some font textured geometry in order to display strings of characters on the screen. The idea is simple enough but like many graphics projects there a a couple of gotchas that I bumped up against and dumped a significant amount of time into. I\'m including code below to load a character into an OpenGL texture but I\'m not including the surrounding code to render that texture. You should be able to use the loaded texture to draw a quad to see the character.
+My last adventure in programming was using Haskell to hook up [freetype2](http://freetype.org/freetype2/) to [OpenGL](https://www.opengl.org/). Freetype is a font rasterization library. The idea is that you use freetype to load a font and render it into an opengl texture, then render some font textured geometry in order to display strings of characters on the screen. The idea is simple enough but like many graphics projects there a a couple of gotchas that I bumped up against and dumped a significant amount of time into. I'm including code below to load a character into an OpenGL texture but I'm not including the surrounding code to render that texture. You should be able to use the loaded texture to draw a quad to see the character.
 
 Setup
 =====
@@ -180,7 +180,7 @@ Then we need to complete the texture by setting some filter parameters and retur
     return tex
 ```
 
-When you run that code you can either inspect your running OpenGL instance to see the buffered texture or you can draw a quad with it. If you set these filter parameters incorrectly or at the wrong time you\'ll still be able to see your texture in a profiler but OpenGL will consider it incomplete and will *not* render it. I found out that I was originally running into this problem because I was setting these params *before* I bound and buffered my texture. [This OpenGL wiki entry about incomplete textures helped me out](http://www.opengl.org/wiki/Common_Mistakes#Creating_a_complete_texture). After I figured that out my program spat out something that looked like
+When you run that code you can either inspect your running OpenGL instance to see the buffered texture or you can draw a quad with it. If you set these filter parameters incorrectly or at the wrong time you'll still be able to see your texture in a profiler but OpenGL will consider it incomplete and will *not* render it. I found out that I was originally running into this problem because I was setting these params *before* I bound and buffered my texture. [This OpenGL wiki entry about incomplete textures helped me out](http://www.opengl.org/wiki/Common_Mistakes#Creating_a_complete_texture). After I figured that out my program spat out something that looked like
 
 ![a torn glyph](/img/Screen Shot 2014-01-12 at 12.53.26 PM.png)
 
@@ -198,7 +198,7 @@ Texture loaded.
 ```
 
 ### Fixing the tearing with padding
-I got stuck for a while trying to figure out what was causing the tearing. I thought it may be the pixel format, OpenGL\'s texture storage or whatever. I ended up just playing with the input to the `loadCharacter` function for a while to see how the tearing changed and eventually figured out that some of them rendered perfectly - like Ubuntu Mono at 270 pixels.
+I got stuck for a while trying to figure out what was causing the tearing. I thought it may be the pixel format, OpenGL's texture storage or whatever. I ended up just playing with the input to the `loadCharacter` function for a while to see how the tearing changed and eventually figured out that some of them rendered perfectly - like Ubuntu Mono at 270 pixels.
 
 ![a perfect glyph](/img/Screen Shot 2014-01-12 at 1.01.58 PM.png)
 
@@ -213,7 +213,7 @@ Buffering glyph bitmap into texture.
 Texture loaded.
 ```
 
-The only difference I could see in the output info was that the width, rows and pitch were different, which makes sense because the bitmaps are different sizes. What I eventually figured out is that the latter\'s pitch is a multiple of four while the former\'s is not. Apparently (and forgive me if I\'m wrong) but OpenGL likes texture widths that are divisible by four. So what I did was to change the buffering portion of `loadCharacter` to pad the texture every `width` pixels with some number of blank pixels to make the `width` a multiple of four.
+The only difference I could see in the output info was that the width, rows and pitch were different, which makes sense because the bitmaps are different sizes. What I eventually figured out is that the latter's pitch is a multiple of four while the former's is not. Apparently (and forgive me if I'm wrong) but OpenGL likes texture widths that are divisible by four. So what I did was to change the buffering portion of `loadCharacter` to pad the texture every `width` pixels with some number of blank pixels to make the `width` a multiple of four.
 
 First we need a pure padding function.
 
@@ -437,7 +437,7 @@ fontFace ft fp = withCString fp $ \str ->
         peek ptr
 ```
 
-The code above contains some other helper functions that I haven\'t mentioned. You can find them in their respective modules at [my github](https://github.com/schell/editor/tree/glyph-rendering/src/Graphics).
+The code above contains some other helper functions that I haven't mentioned. You can find them in their respective modules at [my github](https://github.com/schell/editor/tree/glyph-rendering/src/Graphics).
 
 Links I wish I had before I wrote this
 ======================================

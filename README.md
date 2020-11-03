@@ -1,5 +1,4 @@
 [zyghost.com](http://zyghost.com)
 =================================
-[![Build Status](https://travis-ci.org/schell/zyghost-com.svg?branch=master)](https://travis-ci.org/schell/zyghost-com)
-
-My website!
+My static(ish) website, built on top of server-side rendering with
+[`mogwai`](https://github.com/schell/mogwai).

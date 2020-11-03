@@ -10,3 +10,6 @@ build/
 root
 dist-newstyle
 *.cabal
+/target
+**/*.rs.bk
+/pkg
