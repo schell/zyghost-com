@@ -19,7 +19,7 @@ where
     if dir.is_dir() {
         let mut destination_dir = to_dir.clone();
         destination_dir.push(&dir);
-        std::fs::create_dir(&destination_dir)
+        std::fs::create_dir_all(&destination_dir)
             .unwrap_or_else(|e| println!("ignoring that {} {}", &destination_dir.display(), e));
         for entry in fs::read_dir(dir)? {
             let entry = entry?;
@@ -144,7 +144,7 @@ fn block_to_builder(block: &Block) -> ViewBuilder<Node> {
             bq.to_node()
         }
         Block::CodeBlock(may_language, text) => {
-            builder!(<code class=may_language.as_deref().unwrap_or("unknown")> {text} </code>)
+            builder!(<pre class=may_language.as_deref().unwrap_or("unknown")> {text} </pre>)
                 .to_node()
         }
         Block::OrderedList(items, _type_is) => {

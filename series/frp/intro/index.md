@@ -143,4 +143,5 @@ than I could:
 Hopefully that gives a little background to the situation. FRP has come a long way since 1997 but it's really still
 an area of active research.
 Stay tuned for the next installment where we'll look at some more Haskell code.
+
 ![advanced burrito making](/img/frp-burrito.png "really very advanced burrito making")

@@ -97,6 +97,7 @@ checksum = "0ee1c47aaa256ecabcaea351eae4a9b01ef39ed810004e298d2511ed284b1525"
 [[package]]
 name = "mogwai"
 version = "0.3.0"
+source = "git+https://github.com/schell/mogwai.git#b6bfec37357c2b3f905e569df235e63c0d98c0e1"
 dependencies = [
  "console_log",
  "js-sys",
@@ -110,6 +111,7 @@ dependencies = [
 [[package]]
 name = "mogwai-html-macro"
 version = "0.2.0"
+source = "git+https://github.com/schell/mogwai.git#b6bfec37357c2b3f905e569df235e63c0d98c0e1"
 dependencies = [
  "proc-macro2 1.0.24",
  "quote 1.0.7",
@@ -233,11 +235,12 @@ dependencies = [
 
 [[package]]
 name = "syn-rsx"
-version = "0.6.1"
+version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "932e17515a3b3d77c069cf7eaceb15001fc1a2e10251a6707b317aa144ea3269"
+checksum = "22ff75cba682dea31200f91acf163a87f3dffc6406f14d0f7704c0b12d612af4"
 dependencies = [
  "proc-macro2 1.0.24",
+ "quote 1.0.7",
  "syn",
 ]
 
