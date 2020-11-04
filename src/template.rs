@@ -12,9 +12,9 @@ pub fn wrap_article(
                 <title>{title}</title>
                 <meta charset="utf-8" />
                 <meta content="width=device-width, initial-scale=1" name="viewport" />
-                <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
-                <link href="http://cdn.jsdelivr.net/font-hack/2.010/css/hack.min.css" rel="stylesheet" />
+                <link href="/css/bootstrap.min.css" rel="stylesheet" />
+                <link href="/css/fontawesome.min.css" rel="stylesheet" />
+                <link href="/css/hack.min.css" rel="stylesheet" />
                 <link href="/css/site.css" rel="stylesheet" />
             </head>
             <body>

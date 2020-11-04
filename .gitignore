@@ -13,3 +13,4 @@ dist-newstyle
 /target
 **/*.rs.bk
 /pkg
+.terraform
