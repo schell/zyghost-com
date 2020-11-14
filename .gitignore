@@ -1,16 +1,7 @@
-.DS_Store
-.cabal-sandbox
-_cache
-_site
-cabal.sandbox.config
-dist/
-*.sw[a-z]
-.stack-work
-build/
-root
-dist-newstyle
-*.cabal
-/target
-**/*.rs.bk
-/pkg
+book
 .terraform
+
+
+#Added by cargo
+
+/target
