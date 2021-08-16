@@ -1,4 +1,4 @@
-## reflex-sdl2 is FRP for Haskell SDL2 applications
+# 🕹️  reflex-sdl2 is FRP for Haskell SDL2 applications
 
 This past weekend I had a few moments to spend writing a [reflex][0] host for [sdl][1]
 applications. I expected the task to be much harder - a testament to the two libraries'
@@ -12,7 +12,7 @@ you click or release your mouse :)
 Thanks to Ryan Trinkle for helping me brainstorm and letting me bug him about types at
 odd hours of the night and for giving this new library an official place to live.
 
-[r/haskell comments](https://www.reddit.com/r/haskell/comments/6v6uyj/reflexsdl2_a_minimal_reflex_frp_host_for_sdl2_apps/)
+> [Reddit r/haskell comments](https://www.reddit.com/r/haskell/comments/6v6uyj/reflexsdl2_a_minimal_reflex_frp_host_for_sdl2_apps/)
 
 _2017-08-21_
 

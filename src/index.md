@@ -1,4 +1,4 @@
-# About
+# 📻 About
 
 A zyghost is the essence of a thing before, during and after that thing's
 existence. It is a thorough description of what a thing is - the

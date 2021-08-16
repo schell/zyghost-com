@@ -1,4 +1,4 @@
-# My Keyboard
+# ⌨️ My Keyboard
 > 2015/09/05 - Beginning the dream of replicating my datahand keyboard
 
 > 2018/10/06 - I've picked this project back up and am working on new designs
@@ -50,3 +50,5 @@ Pictured here are three prototype magnetic switches, some refuse, tools,
 switch.
 
 This is going to be a very fun project.
+
+> [Comments on Hacker News](https://news.ycombinator.com/item?id=10176976)

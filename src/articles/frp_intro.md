@@ -1,4 +1,4 @@
-# WIP - Introducing Functional Reactive Programming
+# 🌯 Introducing Functional Reactive Programming
 
 ### Contents
 - [Discovery](#discovery)
@@ -37,7 +37,7 @@ typeclasses:
 * [Monad](https://wiki.haskell.org/Typeclassopedia#Monad)
 * [Monad transformers](https://wiki.haskell.org/Typeclassopedia#Monad_transformers)
 
-and if you've got the time it would really help to get these bad boys in as well -
+and if you've got the time it would really help to get these more advanced topics in as well -
 
 * [MonadFix](https://wiki.haskell.org/Typeclassopedia#MonadFix)
   - More on that here: [MonadFix is Time Travel](http://elvishjerricco.github.io/2017/08/22/monadfix-is-time-travel.html)
@@ -65,6 +65,7 @@ instances for its `Behavior` type then we can define `f` as the equation itself:
 ```haskell
 f g m1 m2 r = g * (m1 * m2) / r ** 2
 ```
+
 In this case `g` is a constant, and due to `Fractional`'s [fromRational](http://hackage.haskell.org/package/base-4.10.0.0/docs/Prelude.html#v:fromRational)
 we should be able to construct a `Behavior` for `g` simply using a float literal:
 
@@ -72,10 +73,17 @@ we should be able to construct a `Behavior` for `g` simply using a float literal
 f m1 m2 r = 6.674e−11 * (m1 * m2) / r ** 2
 ```
 
-So let's say the bodies we're finding the force between are planets. Then let's exclaim "we have a type for that!":
+This is one of Haskell's (and FRP's) killer apps: the ability to write code that reads like mathematics, or like written language.
+In this case we have embedded a pure physics equation into our FRP system _verbatim_. In my opinion this is very elegant.
+
+So let's say the bodies we're finding the force between are planets.
+Then let us exclaim "we have a type for that!":
+
 ```haskell
 data Planet = Planet { planetMass     :: Float
-                     , planetPosition :: V2 Float -- this is just a vector like (Float, Float), see the linear package
+                     -- ^ Simple mass of the planet in kg
+                     , planetPosition :: V2 Float
+                     -- ^ Position vector like (Float, Float), see the linear package
                      }
 
 planetA = Planet 10 $ V2 0 0
@@ -100,11 +108,16 @@ planetBehaviorB = pure planetB
 These planet's don't change over time. These rocks just sit. Which reminds me of a poem:
 
 > Nobody sits like this rock sits.
+>
 > You rock, rock.
+>
 > The rock just sits - and is.
-> You show us how to just sit here
-> And that's what we need.
-> -- [Albert Markovski](https://www.youtube.com/watch?v=_i8-t5biK10)
+>
+> You show us how to just sit here,
+>
+> and that's what we need.
+>
+> -- [Albert Markovski, I :heart: Huckabees](https://www.youtube.com/watch?v=_i8-t5biK10)
 
 Now that we have what we need (a couple of sitty rocks) we can write the other `Behavior`s we need, using
 `Functor` to great lengths ... and masses.
@@ -147,7 +160,7 @@ Or maybe *in three seconds*. Or possibly *in a couple months*.
 
 Events and behaviors are bound to each other by a couple of novel ideas. The first is that given an input like
 a time (or whatever the domain is) we can "sample" a behavior and get a result value. In math this is just
-evaluating a function with an input. Combining the input value with the result value gives us an event!
+evaluating a function with an input. Combining the input value with the result value gives us an event:
 
 ```haskell
 makeEvent :: input -> output -> (input, output)

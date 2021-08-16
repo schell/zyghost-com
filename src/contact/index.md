@@ -1,4 +1,4 @@
-# Contact
+# 📟 Contact
 
 I primarily talk through the sites listed at my [keybase](https://keybase.io/schellsan).
 
@@ -10,4 +10,4 @@ You can also reach me at:
 
   * `efsubenovex` `gmail` `com`
 
-  * `schell` `formation` `ai`
+  * `schell.scivally` `narrative` `so`

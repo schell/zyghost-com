@@ -7,3 +7,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[build-dependencies]
+mdbook = "^0.4"
+mdbook-toc = "^0.7"
+mdbook-variables = "^0.1"

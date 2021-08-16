@@ -1,9 +1,9 @@
-# Projects
+# 🚧 Projects
 
 I have a number of ongoing projects that you can investigate or
 contribute to :) These are labors of love and engineering.
 
-# Web Applications
+## Web Applications
 
 #### [todo-mvc-bench](http://zyghost.com/projects/todo-mvc-bench/index.html)
 A suite for interactively benchmarking various todomvc implementations.
@@ -28,10 +28,6 @@ Continuously varying values, made easy :)
 
 An FRP implementation like netwire, but simpler.
 
-
-### Software as a Service
-In the past I've run a number of SaaS projects but I don't have any at the moment.
-
 ### Consulting and Contracting
 I have 15 years of experience building apps of all sizes, distributed services and parsers.
 I enjoy writing in Haskell and Rust but I'm also proficient in C, Objective C,
@@ -43,7 +39,7 @@ I can read Lisp.
 
 I'd like to learn Prolog.
 
-I have a day job at [Formation, Inc.](https://formation.ai) :), so my services
-are limited to after hours.
+I have a day job at [Software Ltd. / Narrative](https://narrative.so), so my services
+are limited to after hours (in New Zealand).
 
 [Contact me](../contact/index.md)!

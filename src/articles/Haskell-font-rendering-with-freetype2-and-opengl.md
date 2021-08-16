@@ -1,4 +1,4 @@
-# Rendering fonts in Haskell with Freetype2 and OpenGL
+# 💬 Rendering fonts in Haskell with Freetype2 and OpenGL
 
 <!-- toc -->
 

@@ -1,4 +1,4 @@
-# Datatypes can be rendered
+# 📺 Datatypes can be rendered
 
 I've been working on a purely functional GUI and I realized that the structures
 I've been using for rendering could be easily abstracted out into a
