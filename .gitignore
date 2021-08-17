@@ -1,6 +1,6 @@
 book
 .terraform
-
+.DS_Store
 
 #Added by cargo
 
