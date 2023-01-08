@@ -2,10 +2,10 @@
 
 [About](./index.md)
 [Contact](./contact/index.md)
-[Blog](./blog/index.md)
-- [Mogwai 0.6](./blog/mogwai-0.6.md)
 [Guides](./guides/index.md)
 [Projects](./projects/index.md)
+- [Blog](./blog/index.md)
+  - [Mogwai 0.6](./blog/mogwai-0.6.md)
 - [Articles](./articles/index.md)
   - [How to use Freetype2 in Haskell](./articles/Haskell-font-rendering-with-freetype2-and-opengl.md)
   - [My Keyboard](./articles/My-Keyboard.md)
