@@ -19,7 +19,7 @@ echo " ## Building"
 mdbook build
 
 echo " ## Dryrun"
-aws s3 sync book/html s3://${SITE} --dryrun
+aws s3 sync book/html s3://${SITE} --dryrun --exclude *~undo-tree~
 
 echo " ## Should we continue? ctrl-c to quit:"
 echo -n "> Ok"
@@ -27,7 +27,7 @@ read VAR
 echo "  # Ok"
 
 echo " ## Syncing"
-aws s3 sync book/html s3://${SITE}
+aws s3 sync book/html s3://${SITE} --exclude *~undo-tree~
 
 echo " ## Invalidating CF cache"
 # TODO: Diff and only invalidate changed things

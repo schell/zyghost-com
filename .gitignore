@@ -5,3 +5,4 @@ book
 #Added by cargo
 
 /target
+*~undo-tree~

@@ -2,6 +2,8 @@
 
 [About](./index.md)
 [Contact](./contact/index.md)
+[Blog](./blog/index.md)
+- [Mogwai 0.6](./blog/mogwai-0.6.md)
 [Guides](./guides/index.md)
 [Projects](./projects/index.md)
 - [Articles](./articles/index.md)
@@ -12,3 +14,5 @@
 
 - [WIPs](./articles/wips.md)
   - [Introducing FRP](./articles/frp_intro.md)
+
+- [Links](./links.md)

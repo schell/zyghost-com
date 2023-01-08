@@ -8,6 +8,6 @@ Around the web I'm found with the handles `schell`, `schellsan` and `efnx`.
 
 You can also reach me at:
 
-  * `efsubenovex` `gmail` `com`
+  * `efsubenovex` at the `gmail` dot `com`
 
-  * `schell.scivally` `narrative` `so`
+  * `schell.scivally` at the `narrative` dot `so`
