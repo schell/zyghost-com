@@ -12,6 +12,8 @@
   - [Reflex SDL2](./articles/reflex-sdl2.md)
   - [Renderable Types](./articles/Renderable.md)
 
+- [Resume](./resume.md)
+
 - [WIPs](./articles/wips.md)
   - [Introducing FRP](./articles/frp_intro.md)
 
