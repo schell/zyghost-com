@@ -30,11 +30,25 @@ I am a US citizen living in The Wood, Nelson, New Zealand.
 - [GitHub - https://github.com/schell](https://github.com/schell)
 - [LinkedIn - https://linkedin.com/in/schellscivally](https://linkedin.com/in/schellscivally)
 
+## Open Source Work
 
-## Experience
+- I'm currently working on [adding support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
+- I am a [NLNet grantee, working on a cross-platform GPU-driven renderer that runs on WebGPU](https://nlnet.nl/project/Renderling/).
+- Authored [renderling](https://github.com/schell/renderling), a 3d physically-based renderer with easy resource management.
+- Authored [crabslab](https://github.com/schell/crabslab), a slab allocator for working with GPUs.
+- I contributed [RenderLayers to the popular Bevy game engine](https://github.com/bevyengine/bevy/pull/1209).
+- I authored [typograffiti](https://github.com/schell/typograffiti/), a text renderer written in Haskell. 
+  * I am the initial author but have since moved on to `renderling`. 
+  * I handed off maintainership of `typograffiti` to Adrian Cochrane (**alcinnz** on github) who himself is a NLNet grantee.
+
+## Day Job Experience
 
 ### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Present</time>
 #### Senior Rust Software Engineer
+
+Immigrated to New Zealand! 🌴🇳🇿
+
+Authored a realtime image editing application in Rust using `wgpu`, `WGSL` and `WASM`.
 
 Building and maintaining a cross-platform consumer application that performs AI inference on the edge.
 
@@ -51,7 +65,7 @@ Full stack engineering in Haskell using `reflex`. Rust, Go, AWS.
 Formation.ai was acquired by BCG and was formerly Takt.com.
 
 * single-handedly authored, deployed, and maintained a cloud-based template language interpreter in
-Rust that ran 24 million+ Starbucks req/day for 6 months bug free!
+Rust that ran 24 million+ Starbucks req/day for 6 months - bug free!
 * built a fullstack application in Haskell to author Starbucks' Star Program offers.
 
 
