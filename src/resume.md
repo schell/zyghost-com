@@ -17,7 +17,6 @@ h3 img {
 I'm passionate about functional programming, real time graphics and sound synthesis.
 In my free time I like to build things and play games with my kids.
 In the past I've made music with my friends and played shows, toured the US with a band, drove forklifts in a chemical plant and bailed hay in three states.
-Technically I'm an international dancer.
 
 This resume lives permanently at [https://zyghost.com/resume.html](https://zyghost.com/resume.html).
 
@@ -32,8 +31,9 @@ I am a US citizen living in The Wood, Nelson, New Zealand.
 
 ## Open Source Work
 
-- I'm currently working on [adding support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
-- I am a [NLNet grantee, working on a cross-platform GPU-driven renderer that runs on WebGPU](https://nlnet.nl/project/Renderling/).
+- I'm a [maintainer of Rust-GPU](https://rust-gpu.github.io/blog/2024/11/06/new-maintainers), which is a Rust compiler that generates SPIR-V shaders.
+- I'm almost done [adding support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
+- I am an [NLNet grantee, working on a cross-platform GPU-driven renderer that runs on WebGPU](https://nlnet.nl/project/Renderling/).
 - Authored [renderling](https://github.com/schell/renderling), a 3d physically-based renderer with easy resource management.
 - Authored [crabslab](https://github.com/schell/crabslab), a slab allocator for working with GPUs.
 - I contributed [RenderLayers to the popular Bevy game engine](https://github.com/bevyengine/bevy/pull/1209).
