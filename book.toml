@@ -12,6 +12,7 @@ command = "mdbook-toc"
 renderer = ["html"]
 
 [output.html]
+additional-css = ["extra.css"]
 default-theme = "rust"
 
 [output.linkcheck]
