@@ -21,8 +21,8 @@ In the past I've made music with my friends and played shows, toured the US with
 This resume lives permanently at [https://zyghost.com/resume.html](https://zyghost.com/resume.html).
 
 ### 🏠 Current Location
-I am a US citizen living in The Wood, Nelson, New Zealand.
 
+I am a US citizen splitting my life between South Pasadena, California 🐻🇺🇸, and Nelson, New Zealand 🌴🇳🇿.
 
 ### 🔗 Links
 
@@ -32,10 +32,10 @@ I am a US citizen living in The Wood, Nelson, New Zealand.
 ## Open Source Work
 
 - I'm a [maintainer of Rust-GPU](https://rust-gpu.github.io/blog/2024/11/06/new-maintainers), which is a Rust compiler that generates SPIR-V shaders.
-- I'm almost done [adding support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
+- I [added support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
 - I am an [NLNet grantee, working on a cross-platform GPU-driven renderer that runs on WebGPU](https://nlnet.nl/project/Renderling/).
 - Authored [renderling](https://github.com/schell/renderling), a 3d physically-based renderer with easy resource management.
-- Authored [crabslab](https://github.com/schell/crabslab), a slab allocator for working with GPUs.
+- Authored [crabslab](https://github.com/schell/crabslab), a slab allocator for working with GPUs in Rust.
 - I contributed [RenderLayers to the popular Bevy game engine](https://github.com/bevyengine/bevy/pull/1209).
 - I authored [typograffiti](https://github.com/schell/typograffiti/), a text renderer written in Haskell. 
   * I am the initial author but have since moved on to `renderling`. 
@@ -46,28 +46,28 @@ I am a US citizen living in The Wood, Nelson, New Zealand.
 ### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Present</time>
 #### Senior Rust Software Engineer
 
-Immigrated to New Zealand! 🌴🇳🇿
+Reduced the time to deliver new AI models from R&D to production by 50%.
 
-Authored a realtime image editing application in Rust using `wgpu`, `WGSL` and `WASM`.
+Integrated batch processing of ONNX models into AI inference systems in Rust.
 
-Building and maintaining a cross-platform consumer application that performs AI inference on the edge.
+Optimized a cross-platform consumer application that performs AI inference on the edge, including
 
 * performance profiling and optimization
 * shipping new AI models and features
-* refactored build system using Rust `xtask`
+* refactored build systems to use Rust `xtask`
 
+Authored a realtime image editing application in Rust using `wgpu`, `WGSL` and `WASM`.
 
 ### ![formation.ai logo](img/formationai-logo.jpg) Formation.ai <time>Oct 2016 - Feb 2021 (4 years 5 months)</time>
 #### Senior Software Engineer
 
 Full stack engineering in Haskell using `reflex`. Rust, Go, AWS.
 
-Formation.ai was acquired by BCG and was formerly Takt.com.
-
 * single-handedly authored, deployed, and maintained a cloud-based template language interpreter in
 Rust that ran 24 million+ Starbucks req/day for 6 months - bug free!
 * built a fullstack application in Haskell to author Starbucks' Star Program offers.
 
+Formation.ai was acquired by BCG and was formerly Takt.com.
 
 ### ![syndeca.com logo](img/syndeca-logo.png) Syndeca.com <time>Apr 2010 - Oct 2016 (6 years 7 months)</time>
 #### Senior Developer
