@@ -58,6 +58,8 @@ Optimized a cross-platform consumer application that performs AI inference on th
 
 Authored a realtime image editing application in Rust using `wgpu`, `WGSL` and `WASM`.
 
+Rust, Python, Lua, C, C++, JavaScript, Typescript
+
 ### ![formation.ai logo](img/formationai-logo.jpg) Formation.ai <time>Oct 2016 - Feb 2021 (4 years 5 months)</time>
 #### Senior Software Engineer
 
@@ -68,6 +70,8 @@ Rust that ran 24 million+ Starbucks req/day for 6 months - bug free!
 * built a fullstack application in Haskell to author Starbucks' Star Program offers.
 
 Formation.ai was acquired by BCG and was formerly Takt.com.
+
+Haskell, Javascript, Rust
 
 ### ![syndeca.com logo](img/syndeca-logo.png) Syndeca.com <time>Apr 2010 - Oct 2016 (6 years 7 months)</time>
 #### Senior Developer
@@ -82,6 +86,8 @@ including:
   - Bass Pro
   - Sears
 * internal productivity tools in Haskell
+
+Objective-C, JavaScript, Haskell 
 
 ### 🤝 Freelancing <time>2005 - 2012</time>
 
