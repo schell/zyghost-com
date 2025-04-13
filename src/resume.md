@@ -117,6 +117,13 @@ Flash game development.
 
 ## 🎞️ Honors and Awards
 
+### ![daring](img/award-daring.png) Cultural Award - We’re Daring
+**Narrative.so** <time>Feb 2025</time>
+
+For excellent work planning and orchestrating the delivery of new AI models into production.
+
+> We act decisively to make brave and bold choices.
+
 ### ![creative](img/award-create.svg) Cultural Award - Embrace Creative Freedom
 **Narrative.so** <time>Nov 2023</time>
 
