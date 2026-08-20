@@ -15,4 +15,8 @@ additional-css = ["extra.css", "FontAwesome/css/font-awesome.css"]
 default-theme = "rust"
 hash-files = false
 
+[output.html.fold]
+enable = true
+level = 1
+
 # [output.linkcheck]
