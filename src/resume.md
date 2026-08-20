@@ -56,6 +56,8 @@ Rust
 ### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Jul 2025 (4 years 5 months)</time>
 #### Senior Rust Software Engineer
 
+[https://narrative.so/](https://narrative.so/)
+
 Reduced the time to deliver new AI models from R&D to production by 50%.
 
 Integrated batch processing of ONNX models into AI inference systems in Rust.
@@ -73,6 +75,8 @@ Rust, Python, Lua, C, C++, JavaScript, Typescript
 ### ![formation.ai logo](img/formationai-logo.jpg) Formation.ai <time>Oct 2016 - Feb 2021 (4 years 5 months)</time>
 #### Senior Software Engineer
 
+[https://formation.ai/](https://formation.ai/)
+
 Full stack engineering in Haskell using `reflex`. Rust, Go, AWS.
 
 * single-handedly authored, deployed, and maintained a cloud-based template language interpreter in
@@ -85,6 +89,8 @@ Haskell, Javascript, Rust
 
 ### ![syndeca.com logo](img/syndeca-logo.png) Syndeca.com <time>Apr 2010 - Oct 2016 (6 years 7 months)</time>
 #### Senior Developer
+
+[https://syndeca.com/](https://syndeca.com/)
 
 Full stack engineering in Objective-C, Flash, Javascript and Haskell.
 
@@ -119,6 +125,8 @@ Clients include:
 - Sonoma State University
 
 ### ![SSU NASA Education and Public Outreach](img/nasa-logo.jpg) NASA Education and Public Outreach <time>Sep 2003 - Apr 2008 (4 years 9 months)</time>
+
+[https://epo.sonoma.edu/](https://epo.sonoma.edu/)
 
 Flash game development.
 
