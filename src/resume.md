@@ -33,7 +33,8 @@ I am a US citizen splitting my life between South Pasadena, California 🐻🇺�
 
 - I'm a [maintainer of Rust-GPU](https://rust-gpu.github.io/blog/2024/11/06/new-maintainers), which is a Rust compiler that generates SPIR-V shaders.
 - I [added support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
-- I am an [NLNet grantee, working on a cross-platform GPU-driven renderer that runs on WebGPU](https://nlnet.nl/project/Renderling/).
+- I am a two-time [NLNet grantee](https://nlnet.nl/project/Renderling-Ecosystem/), working on a cross-platform GPU-driven renderer ecosystem that runs on WebGPU ([first grant](https://nlnet.nl/project/Renderling/), [second grant](https://nlnet.nl/project/Renderling-Ecosystem/)).
+- Authored [wgsl-rs](https://github.com/schell/wgsl-rs), a proc-macro that transpiles Rust to WGSL so shaders can be unit-tested on the CPU and run isomorphically on the GPU, with automatic `wgpu` runtime linkage.
 - Authored [renderling](https://github.com/schell/renderling), a 3d physically-based renderer with easy resource management.
 - Authored [crabslab](https://github.com/schell/crabslab), a slab allocator for working with GPUs in Rust.
 - I contributed [RenderLayers to the popular Bevy game engine](https://github.com/bevyengine/bevy/pull/1209).
@@ -43,7 +44,14 @@ I am a US citizen splitting my life between South Pasadena, California 🐻🇺�
 
 ## Day Job Experience
 
-### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Present</time>
+### ![zodl logo](img/zodl-logo.jpg) [ZODL Inc.](https://zodl.com/) (formerly Electric Coin Company) <time>Jul 2025 - Present</time>
+#### Core Engineer
+
+Working on the Zcash protocol and core libraries.
+
+Rust
+
+### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Jul 2025</time>
 #### Senior Rust Software Engineer
 
 Reduced the time to deliver new AI models from R&D to production by 50%.
