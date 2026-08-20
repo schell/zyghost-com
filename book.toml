@@ -11,7 +11,7 @@ command = "mdbook-toc"
 renderer = ["html"]
 
 [output.html]
-additional-css = ["extra.css", "FontAwesome/css/font-awesome.css"]
+additional-css = ["extra.css"]
 default-theme = "rust"
 hash-files = false
 

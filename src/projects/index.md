@@ -3,7 +3,7 @@
 I have a number of ongoing projects that you can investigate or
 contribute to :) These are labors of love and engineering.
 
-## [renderling](https://renderling.xyz) ![](../img/rust.svg "for Rust") [<i class="fa fa-github"></i>](https://github.com/schell/renderling)
+## [renderling](https://renderling.xyz) ![](../img/rust.svg "for Rust") [<i class="fa-brands fa-github"></i>](https://github.com/schell/renderling)
 A GPU-driven, real-time, forward+ renderer with an ergonomic API. Runs everywhere.
 
 I keep a [devlog at the renderling.xyz website](https://renderling.xyz/devlog/index.html).
