@@ -126,7 +126,7 @@ Clients include:
 
 ### ![SSU NASA Education and Public Outreach](img/nasa-logo.jpg) NASA Education and Public Outreach <time>Sep 2003 - Apr 2008 (4 years 9 months)</time>
 
-[https://epo.sonoma.edu/](https://epo.sonoma.edu/)
+[https://en.wikipedia.org/wiki/NASA_Education_and_Public_Outreach_Group](https://en.wikipedia.org/wiki/NASA_Education_and_Public_Outreach_Group)
 
 Flash game development.
 
