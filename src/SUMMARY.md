@@ -5,6 +5,10 @@
 [Resume](./resume.md)
 [Projects](./projects/index.md)
 [Guides](./guides/index.md)
+[Music Links](./links.md)
+
+# Archive
+
 - [Blog](./blog/index.md)
   - [Mogwai 0.6](./blog/mogwai-0.6.md)
 - [Articles](./articles/index.md)
@@ -12,9 +16,5 @@
   - [My Keyboard](./articles/My-Keyboard.md)
   - [Reflex SDL2](./articles/reflex-sdl2.md)
   - [Renderable Types](./articles/Renderable.md)
-
-
 - [WIPs](./articles/wips.md)
   - [Introducing FRP](./articles/frp_intro.md)
-
-- [Music Links](./links.md)

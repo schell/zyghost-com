@@ -1,7 +1,6 @@
 [book]
 authors = ["Schell Scivally"]
 language = "en"
-multilingual = false
 src = "src"
 title = "Zyghost"
 
@@ -12,7 +11,12 @@ command = "mdbook-toc"
 renderer = ["html"]
 
 [output.html]
-additional-css = ["extra.css"]
+additional-css = ["extra.css", "FontAwesome/css/font-awesome.css"]
 default-theme = "rust"
+hash-files = false
 
-[output.linkcheck]
+[output.html.fold]
+enable = true
+level = 0
+
+# [output.linkcheck]

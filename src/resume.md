@@ -15,10 +15,14 @@ h3 img {
 <small>efsubenovex at gmail dot com</small>
 
 I'm passionate about functional programming, real time graphics and sound synthesis.
+
+As an engineer I'm a generalist with a few deep interests in GPU programming, user interfaces and programming languages.
+
 In my free time I like to build things and play games with my kids.
 In the past I've made music with my friends and played shows, toured the US with a band, drove forklifts in a chemical plant and bailed hay in three states.
 
 This resume lives permanently at [https://zyghost.com/resume.html](https://zyghost.com/resume.html).
+Download this resume as a [PDF](img/SchellScivally-2026-08-21.pdf).
 
 ### 🏠 Current Location
 
@@ -31,11 +35,15 @@ I am a US citizen splitting my life between South Pasadena, California 🐻🇺�
 
 ## Open Source Work
 
-- I'm a [maintainer of Rust-GPU](https://rust-gpu.github.io/blog/2024/11/06/new-maintainers), which is a Rust compiler that generates SPIR-V shaders.
-- I [added support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
-- I am an [NLNet grantee, working on a cross-platform GPU-driven renderer that runs on WebGPU](https://nlnet.nl/project/Renderling/).
+- I maintain many open source libraries as my current day job, working on the Zcash cryptocurrency protocol at [ZODL](https://zodl.com).
+- I am a two-time [NLNet grantee](https://nlnet.nl/project/Renderling-Ecosystem/), working on a cross-platform GPU-driven renderer ecosystem that runs on WebGPU.
+  * [2024 Renderling](https://nlnet.nl/project/Renderling/)
+  * [2025 Renderling Ecosystem](https://nlnet.nl/project/Renderling-Ecosystem/).
+- Authored [wgsl-rs](https://github.com/schell/wgsl-rs), a proc-macro that transpiles Rust to WGSL so shaders can be unit-tested on the CPU and run isomorphically on the GPU, with automatic `wgpu` runtime linkage.
 - Authored [renderling](https://github.com/schell/renderling), a 3d physically-based renderer with easy resource management.
 - Authored [crabslab](https://github.com/schell/crabslab), a slab allocator for working with GPUs in Rust.
+- I'm a [maintainer of Rust-GPU](https://rust-gpu.github.io/blog/2024/11/06/new-maintainers), which is a Rust compiler that generates SPIR-V shaders.
+- I [added support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
 - I contributed [RenderLayers to the popular Bevy game engine](https://github.com/bevyengine/bevy/pull/1209).
 - I authored [typograffiti](https://github.com/schell/typograffiti/), a text renderer written in Haskell. 
   * I am the initial author but have since moved on to `renderling`. 
@@ -43,8 +51,19 @@ I am a US citizen splitting my life between South Pasadena, California 🐻🇺�
 
 ## Day Job Experience
 
-### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Present</time>
+### ![zodl logo](img/zodl-logo.jpg) ZODL Inc. (formerly Electric Coin Company) <time>Jul 2025 - Present</time>
+#### Core Engineer
+
+[https://zodl.com/](https://zodl.com/)
+
+Working on the Zcash protocol and core libraries.
+
+Rust
+
+### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Jul 2025 (4 years 5 months)</time>
 #### Senior Rust Software Engineer
+
+[https://narrative.so/](https://narrative.so/)
 
 Reduced the time to deliver new AI models from R&D to production by 50%.
 
@@ -63,6 +82,8 @@ Rust, Python, Lua, C, C++, JavaScript, Typescript
 ### ![formation.ai logo](img/formationai-logo.jpg) Formation.ai <time>Oct 2016 - Feb 2021 (4 years 5 months)</time>
 #### Senior Software Engineer
 
+~~[https://formation.ai/](https://formation.ai/)~~ (acquired by Boston Consulting Group in 2022)
+
 Full stack engineering in Haskell using `reflex`. Rust, Go, AWS.
 
 * single-handedly authored, deployed, and maintained a cloud-based template language interpreter in
@@ -75,6 +96,8 @@ Haskell, Javascript, Rust
 
 ### ![syndeca.com logo](img/syndeca-logo.png) Syndeca.com <time>Apr 2010 - Oct 2016 (6 years 7 months)</time>
 #### Senior Developer
+
+[https://syndeca.com/](https://syndeca.com/)
 
 Full stack engineering in Objective-C, Flash, Javascript and Haskell.
 
@@ -109,6 +132,8 @@ Clients include:
 - Sonoma State University
 
 ### ![SSU NASA Education and Public Outreach](img/nasa-logo.jpg) NASA Education and Public Outreach <time>Sep 2003 - Apr 2008 (4 years 9 months)</time>
+
+[https://en.wikipedia.org/wiki/NASA_Education_and_Public_Outreach_Group](https://en.wikipedia.org/wiki/NASA_Education_and_Public_Outreach_Group)
 
 Flash game development.
 
