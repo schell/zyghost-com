@@ -53,7 +53,7 @@ Working on the Zcash protocol and core libraries.
 
 Rust
 
-### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Jul 2025</time>
+### ![narrative.so logo](img/narrative-icon.svg) Narrative.so <time class="resume-date">Feb 2021 - Jul 2025 (4 years 5 months)</time>
 #### Senior Rust Software Engineer
 
 Reduced the time to deliver new AI models from R&D to production by 50%.
