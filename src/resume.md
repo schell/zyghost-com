@@ -75,7 +75,7 @@ Rust, Python, Lua, C, C++, JavaScript, Typescript
 ### ![formation.ai logo](img/formationai-logo.jpg) Formation.ai <time>Oct 2016 - Feb 2021 (4 years 5 months)</time>
 #### Senior Software Engineer
 
-[https://formation.ai/](https://formation.ai/)
+~~[https://formation.ai/](https://formation.ai/)~~ (acquired by Boston Consulting Group in 2022)
 
 Full stack engineering in Haskell using `reflex`. Rust, Go, AWS.
 
