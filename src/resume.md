@@ -44,8 +44,10 @@ I am a US citizen splitting my life between South Pasadena, California 🐻🇺�
 
 ## Day Job Experience
 
-### ![zodl logo](img/zodl-logo.jpg) [ZODL Inc.](https://zodl.com/) (formerly Electric Coin Company) <time>Jul 2025 - Present</time>
+### ![zodl logo](img/zodl-logo.jpg) ZODL Inc. (formerly Electric Coin Company) <time>Jul 2025 - Present</time>
 #### Core Engineer
+
+[https://zodl.com/](https://zodl.com/)
 
 Working on the Zcash protocol and core libraries.
 
