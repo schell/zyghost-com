@@ -4,6 +4,11 @@
 [Contact](./contact/index.md)
 [Resume](./resume.md)
 [Projects](./projects/index.md)
+- [Articles](./articles/index.md)
+  - [Swarm Nannies](./articles/swarm-nannies.md)
+  - [Renderable Types · _2015-10-03_](./articles/Renderable.md)
+  - [My Keyboard · 2015-09-05](./articles/My-Keyboard.md)
+  - [Using Freetype2 from Haskell · _2014-08-01_](./articles/Haskell-font-rendering-with-freetype2-and-opengl.md)
 [Guides](./guides/index.md)
 [Music Links](./links.md)
 
@@ -11,10 +16,7 @@
 
 - [Blog](./blog/index.md)
   - [Mogwai 0.6](./blog/mogwai-0.6.md)
-- [Articles](./articles/index.md)
-  - [How to use Freetype2 in Haskell](./articles/Haskell-font-rendering-with-freetype2-and-opengl.md)
-  - [My Keyboard](./articles/My-Keyboard.md)
-  - [Reflex SDL2](./articles/reflex-sdl2.md)
-  - [Renderable Types](./articles/Renderable.md)
+  - [Reflex SDL2](./blog/reflex-sdl2.md)
+
 - [WIPs](./articles/wips.md)
   - [Introducing FRP](./articles/frp_intro.md)

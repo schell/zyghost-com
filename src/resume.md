@@ -14,19 +14,44 @@ h3 img {
 📞 <small>+64 021 420 471</small>
 <small>efsubenovex at gmail dot com</small>
 
-I'm passionate about functional programming, real time graphics and sound synthesis.
+### My **tl;dr**
 
-As an engineer I'm a generalist with a few deep interests in GPU programming, user interfaces and programming languages.
+* I'm passionate about
+  - functional programming
+  - real-time rendering
+  - music and sound synthesis
+* I'm "T-shaped" engineer (a generalist with a few deep interests):
+  - GPU Programming
+  - Web Dev (APIs and user interfaces)
+  - Programming Languages
+  - AI Inference
+* I feel equally comfortable working on the frontend or backend of a project.
+* I love a good optimization problem.
+* My preferred programming languages are Rust, Haskell, Objective-C, and JavaScript.
 
-In my free time I like to build things and play games with my kids.
-In the past I've made music with my friends and played shows, toured the US with a band, drove forklifts in a chemical plant and bailed hay in three states.
+At a high level, this has been my career, chronologically:
 
-This resume lives permanently at [https://zyghost.com/resume.html](https://zyghost.com/resume.html).
-Download this resume as a [PDF](img/SchellScivally-2026-08-21.pdf).
+1. Games 
+2. Agency work and retail
+3. AI
+4. A little crypto (zcash)
+
+And besides working in software I have:
+* Been an expert witness in a Texas courtroom
+* Played in a couple rock bands in California
+* Toured the US as a merch boy for the Warped Tour
+* Driven a forklift in a chemical plant
+* Bailed hay in three states
+* Danced ballet in New Zealand
+
+In my free time I like to do handy work, play games with my two kids and make "altered art".
+
+This resume lives permanently at [https://zyghost.com/resume.html](https://zyghost.com/resume.html),
+and you can download this resume as a [PDF](img/SchellScivally-2026-10-12.pdf).
 
 ### 🏠 Current Location
 
-I am a US citizen splitting my life between South Pasadena, California 🐻🇺🇸, and Nelson, New Zealand 🌴🇳🇿.
+I am a US citizen living in Nelson, New Zealand 🌴🇳🇿.
 
 ### 🔗 Links
 
@@ -36,13 +61,13 @@ I am a US citizen splitting my life between South Pasadena, California 🐻🇺�
 ## Open Source Work
 
 - I maintain many open source libraries as my current day job, working on the Zcash cryptocurrency protocol at [ZODL](https://zodl.com).
-- I am a two-time [NLNet grantee](https://nlnet.nl/project/Renderling-Ecosystem/), working on a cross-platform GPU-driven renderer ecosystem that runs on WebGPU.
+- I am a two-time [NLNet grantee](https://nlnet.nl/project/Renderling-Ecosystem/), working on a cross-platform GPU-driven rendering ecosystem that runs on WebGPU.
   * [2024 Renderling](https://nlnet.nl/project/Renderling/)
   * [2025 Renderling Ecosystem](https://nlnet.nl/project/Renderling-Ecosystem/).
 - Authored [wgsl-rs](https://github.com/schell/wgsl-rs), a proc-macro that transpiles Rust to WGSL so shaders can be unit-tested on the CPU and run isomorphically on the GPU, with automatic `wgpu` runtime linkage.
 - Authored [renderling](https://github.com/schell/renderling), a 3d physically-based renderer with easy resource management.
 - Authored [crabslab](https://github.com/schell/crabslab), a slab allocator for working with GPUs in Rust.
-- I'm a [maintainer of Rust-GPU](https://rust-gpu.github.io/blog/2024/11/06/new-maintainers), which is a Rust compiler that generates SPIR-V shaders.
+- I was a [maintainer of Rust-GPU](https://rust-gpu.github.io/blog/2024/11/06/new-maintainers), which is a Rust compiler that generates SPIR-V shaders.
 - I [added support for atomic operations to `wgpu`'s transpiler SPIR-V frontend](https://github.com/gfx-rs/wgpu/issues/4489).
 - I contributed [RenderLayers to the popular Bevy game engine](https://github.com/bevyengine/bevy/pull/1209).
 - I authored [typograffiti](https://github.com/schell/typograffiti/), a text renderer written in Haskell. 
