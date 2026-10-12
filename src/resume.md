@@ -20,8 +20,8 @@ h3 img {
   - functional programming
   - real-time rendering
   - music and sound synthesis
-* I'm "T-shaped" engineer (a generalist with a few deep interests):
-  - GPU Programming
+* I'm a "T-shaped" engineer (a generalist with a few deep interests):
+  - GPU Programming (focus on rendering for games and simulations)
   - Web Dev (APIs and user interfaces)
   - Programming Languages
   - AI Inference
@@ -37,12 +37,13 @@ At a high level, this has been my career, chronologically:
 4. A little crypto (zcash)
 
 And besides working in software I have:
-* Been an expert witness in a Texas courtroom
+* Appeared as an expert witness in a Texas courtroom for a software contract case 
 * Played in a couple rock bands in California
 * Toured the US as a merch boy for the Warped Tour
 * Driven a forklift in a chemical plant
 * Bailed hay in three states
 * Danced ballet in New Zealand
+* Appeared as a Kazon from Star Trek in an issue of 3-2-1 Contact (a kid's STEM magazine)
 
 In my free time I like to do handy work, play games with my two kids and make "altered art".
 
